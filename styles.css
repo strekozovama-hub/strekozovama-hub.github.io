@@ -1,0 +1,1535 @@
+/* ========================================
+   macOS Desktop Portfolio
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --window-bg: rgba(236, 236, 236, 0.95);
+  --titlebar-bg: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 100%);
+  --titlebar-border: #b0b0b0;
+  --btn-close: #ff5f57;
+  --btn-minimize: #ffbd2e;
+  --btn-maximize: #28c840;
+  --dock-bg: rgba(255, 255, 255, 0.65);
+  --dock-border: rgba(0, 0, 0, 0.12);
+  --menubar-bg: rgba(255, 255, 255, 0.85);
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --accent: #007aff;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   Desktop
+   ======================================== */
+
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background: #f5f5f5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.desktop__area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.desktop__area:active {
+  cursor: grabbing;
+}
+
+.desktop__canvas {
+  position: absolute;
+  width: 6000px;
+  height: 4000px;
+  top: 0;
+  left: 0;
+  background:
+    radial-gradient(circle, #d4d4d4 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: #f5f5f5;
+  will-change: transform;
+}
+
+/* ========================================
+   About Card (dropdown under menubar)
+   ======================================== */
+
+.menubar__left {
+  position: relative;
+}
+
+.menubar__greeting {
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0;
+  margin-left: 28px;
+  font-family: inherit;
+}
+
+.menubar__greeting:hover {
+  opacity: 0.7;
+}
+
+.about-card {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: #f5f5f5;
+  border-radius: 40px;
+  padding: 32px;
+  flex-direction: row;
+  gap: 24px;
+  z-index: 1100;
+  filter: drop-shadow(0 12px 48px rgba(0, 0, 0, 0.18));
+  box-shadow: inset 0 0 0 1px #D9D9D9;
+  user-select: text;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 40px;
+  width: 16px;
+  height: 16px;
+  background: #f5f5f5;
+  transform: rotate(45deg);
+  border-left: 1px solid #D9D9D9;
+  border-top: 1px solid #D9D9D9;
+  z-index: 1;
+}
+
+.about-card.is-hidden {
+  display: none;
+}
+
+/* Cursor bubble (FigJam-style) */
+.cursor-bubble {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 40px;
+  z-index: 1100;
+}
+
+.cursor-bubble.is-hidden {
+  display: none;
+}
+
+.cursor-bubble__pointer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: rotate(90deg) scaleY(-1);
+}
+
+.cursor-bubble__label {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: #8a38f5;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 18px;
+  border-radius: 2px 20px 20px 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: 2px solid #8a38f5;
+}
+
+@keyframes aboutOpen {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.about-card__photo {
+  flex-shrink: 0;
+  width: 260px;
+  align-self: stretch;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.about-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 324px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.about-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-card__title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #252525;
+  line-height: 1.1;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.about-card__wave {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.about-card__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: black;
+  margin: 0;
+}
+
+.about-card__body .about-card__text + .about-card__text {
+  margin-top: 0;
+}
+
+.about-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.about-card__text--collab {
+  font-weight: 400;
+  color: black;
+  letter-spacing: -0.02em;
+}
+
+.about-card__cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #d25738;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.about-card__cta:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   FigJam-style Toolbar
+   ======================================== */
+
+.figjam-toolbar {
+  position: fixed;
+  bottom: 8px;
+  left: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  z-index: 90;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 2px;
+  user-select: none;
+  overflow: visible;
+}
+
+.figjam-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f0f0f0;
+  border-radius: 12px;
+  padding: 2px;
+  height: 44px;
+}
+
+.figjam-toolbar__tool {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  position: relative;
+  color: #555;
+  flex-shrink: 0;
+}
+
+.figjam-toolbar__tool:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #1d1d1f;
+}
+
+.figjam-toolbar__tool:hover .figjam-tip {
+  display: flex;
+}
+
+.figjam-tip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.92);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  align-items: center;
+  gap: 8px;
+}
+
+.figjam-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(30, 30, 30, 0.92);
+}
+
+.figjam-tip__shortcut {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.figjam-toolbar__tool:active {
+  transform: scale(0.93);
+}
+
+.figjam-toolbar__tool.is-active {
+  background: white;
+  color: #1d1d1f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+}
+
+.figjam-toolbar__tool--pencil {
+  width: 40px;
+  height: 44px;
+  position: relative;
+  overflow: visible;
+}
+
+.figjam-toolbar__tool--pencil svg {
+  position: absolute;
+  bottom: -2px;
+}
+
+.figjam-toolbar__tool--sticky {
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+}
+
+.figjam-toolbar__sep {
+  width: 1px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* Sticky notes wrap & color picker */
+.figjam-toolbar__sticky-wrap {
+  position: relative;
+}
+
+.sticky-color-picker {
+  display: none;
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  padding: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 132px;
+  justify-content: center;
+}
+
+.sticky-color-picker.is-open {
+  display: flex;
+}
+
+.sticky-color-picker__color {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.sticky-color-picker__color:hover {
+  transform: scale(1.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-color-picker__color:active {
+  transform: scale(0.92);
+}
+
+/* Canvas drawings */
+.canvas-drawing.is-selected {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Sticky Notes on Canvas
+   ======================================== */
+
+.sticky-note {
+  position: absolute;
+  width: 200px;
+  min-height: 200px;
+  border-radius: 4px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.15s;
+}
+
+.sticky-note:hover {
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.sticky-note:active {
+  cursor: grabbing;
+}
+
+.sticky-note.is-selected {
+  outline: 2px solid #007aff;
+  outline-offset: 2px;
+}
+
+.sticky-note.is-editing {
+  cursor: default;
+  z-index: 60;
+  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.22);
+}
+
+.sticky-note.is-landing {
+  animation: stickyLand 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stickyLand {
+  0% { transform: scale(0.5) rotate(-4deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.sticky-note__drag-handle {
+  height: 24px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+.sticky-note__drag-handle:active {
+  cursor: grabbing;
+}
+
+.sticky-note__dots {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.sticky-note:hover .sticky-note__dots {
+  opacity: 0.4;
+}
+
+.sticky-note__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sticky-note__delete {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.sticky-note:hover .sticky-note__delete {
+  opacity: 1;
+}
+
+.sticky-note__delete:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sticky-note__text {
+  flex: 1;
+  padding: 0 12px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.75);
+  outline: none;
+  border: none;
+  background: transparent;
+  resize: none;
+  cursor: text;
+  min-height: 160px;
+  overflow-wrap: break-word;
+}
+
+.sticky-note__text:empty::before {
+  content: 'Type something...';
+  color: rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+/* ========================================
+   Sticker Picker (in toolbar)
+   ======================================== */
+
+.figjam-toolbar__sticker-wrap {
+  position: relative;
+}
+
+.figjam-toolbar__tool--sticker {
+  width: 44px;
+  height: 44px;
+  overflow: visible;
+}
+
+.sticker-picker {
+  display: none;
+  position: absolute;
+  bottom: 56px;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  padding: 8px;
+  width: 172px;
+  user-select: none;
+}
+
+.sticker-picker.is-open {
+  display: block;
+}
+
+.sticker-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.sticker-picker__item {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.sticker-picker__item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.2);
+}
+
+.sticker-picker__item:active {
+  transform: scale(0.95);
+}
+
+.sticker-picker__more {
+  font-size: 18px !important;
+  color: #999;
+  font-weight: 300;
+}
+
+/* ========================================
+   Spotify Widget
+   ======================================== */
+
+.spotify-widget {
+  position: fixed;
+  bottom: 8px;
+  right: 16px;
+  padding: 5px;
+  background: #181818;
+  border-radius: 14px;
+  z-index: 100;
+  cursor: grab;
+}
+
+.spotify-widget:active {
+  cursor: grabbing;
+}
+
+/* ========================================
+   Desktop Folders
+   ======================================== */
+
+.desktop-folder {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: grab;
+  z-index: 50;
+  user-select: none;
+  width: 120px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.desktop-folder:hover {
+  background: rgba(0, 122, 255, 0.08);
+  cursor: pointer;
+}
+
+.desktop-folder:active {
+  cursor: grabbing;
+}
+
+.desktop-folder.is-selected {
+  background: rgba(0, 122, 255, 0.18);
+  outline: 2px solid rgba(0, 122, 255, 0.4);
+  outline-offset: -2px;
+  border-radius: 8px;
+}
+
+.desktop-folder__icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 68px;
+}
+
+.desktop-folder__icon {
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+}
+
+.desktop-folder__badge {
+  position: absolute;
+  top: 20px;
+  right: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+}
+
+.desktop-folder__name {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-align: center;
+  line-height: 1.3;
+  text-shadow: 0 0.5px 1px rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Placed stickers on desktop */
+.sticker {
+  position: absolute;
+  font-size: 40px;
+  cursor: grab;
+  z-index: 50;
+  user-select: none;
+  transition: transform 0.1s;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.sticker.is-selected {
+  outline: 2px solid #007aff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.sticker:hover {
+  transform: rotate(var(--rotation, 0deg)) scale(1.15);
+}
+
+.sticker:active {
+  cursor: grabbing;
+  transform: rotate(var(--rotation, 0deg)) scale(1.05);
+}
+
+.sticker.is-landing {
+  animation: stickerLand 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stickerLand {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+   Menu Bar
+   ======================================== */
+
+.menubar {
+  height: 25px;
+  background: var(--menubar-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  z-index: 1000;
+  border-bottom: 0.5px solid rgba(0,0,0,0.1);
+}
+
+.menubar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 400;
+}
+
+/* ========================================
+   Dock
+   ======================================== */
+
+.dock {
+  position: fixed;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  padding: 0 4px 4px;
+}
+
+.dock__container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 4px 8px;
+  background: var(--dock-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--dock-border);
+  border-radius: 18px;
+}
+
+.dock__separator {
+  width: 1px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.12);
+  margin: 0 4px;
+  align-self: center;
+}
+
+.dock__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+}
+
+.dock__item:hover {
+  transform: scale(1.3) translateY(-8px);
+}
+
+.dock__item--static {
+  cursor: default;
+}
+
+.dock__item--static:hover {
+  transform: none;
+}
+
+.dock__item:hover::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* App Icon Images */
+.dock__icon-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.dock__icon-img[alt="Notion"] {
+  background: white;
+  padding: 4px;
+}
+
+.dock__icon-img[alt="LinkedIn"] {
+  padding: 4px;
+  pointer-events: none;
+}
+
+/* ========================================
+   Windows
+   ======================================== */
+
+.window {
+  position: absolute;
+  background: var(--window-bg);
+  border-radius: 10px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 0 0.5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: none;
+  z-index: 100;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+.window.is-open {
+  display: flex;
+  flex-direction: column;
+  animation: windowOpen 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.window.is-closing {
+  animation: windowClose 0.2s ease-in forwards;
+}
+
+@keyframes windowOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes windowClose {
+  to {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+}
+
+.window__titlebar {
+  height: 38px;
+  background: var(--titlebar-bg);
+  border-bottom: 1px solid var(--titlebar-border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  cursor: grab;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.window__titlebar:active {
+  cursor: grabbing;
+}
+
+.window__buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.window__btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  position: relative;
+}
+
+.window__btn--close { background: var(--btn-close); }
+.window__btn--minimize { background: var(--btn-minimize); }
+.window__btn--maximize { background: var(--btn-maximize); }
+
+.window__btn--close:hover::after {
+  content: '×';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  line-height: 1;
+  color: rgba(0,0,0,0.5);
+  font-weight: 700;
+}
+
+.window__title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.window__toolbar {
+  height: 28px;
+  background: rgba(246, 246, 246, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+/* Trash Window */
+.window--trash {
+  width: 680px;
+  height: 520px;
+  top: 60px;
+  left: calc(50% - 340px);
+}
+
+.window--trash .window__content {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-content: flex-start;
+  background: white;
+}
+
+/* Trash Items */
+.trash-item {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: grab;
+  border-radius: 8px;
+  padding: 8px;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.trash-item:hover {
+  background: rgba(0, 122, 255, 0.08);
+}
+
+.trash-item:active {
+  cursor: grabbing;
+}
+
+.trash-item.is-dragging {
+  opacity: 0.4;
+}
+
+.trash-item__preview {
+  width: 100px;
+  height: 80px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.trash-item__name {
+  font-size: 11px;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* ========================================
+   Mock UI Previews
+   ======================================== */
+
+/* Dashboard */
+.mock-ui--dashboard {
+  background: #f5f5f7;
+  padding: 4px;
+  height: 100%;
+}
+
+.mock-bar {
+  height: 6px;
+  background: linear-gradient(90deg, #e0e0e0 0%, #e0e0e0 60%, transparent 60%);
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+
+.mock-sidebar {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 20px;
+  height: calc(100% - 10px);
+  background: #e8e8ed;
+}
+
+.mock-cards {
+  display: flex;
+  gap: 3px;
+  margin-left: 22px;
+  margin-bottom: 4px;
+}
+
+.mock-card {
+  flex: 1;
+  height: 16px;
+  background: white;
+  border-radius: 2px;
+  border: 0.5px solid #e0e0e0;
+}
+
+.mock-chart {
+  margin-left: 22px;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(0,122,255,0.1) 0%, rgba(0,122,255,0.02) 100%);
+  border-radius: 2px;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* Mobile */
+.mock-ui--mobile {
+  background: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mock-status-bar {
+  height: 6px;
+  background: #f5f5f7;
+}
+
+.mock-hero {
+  height: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: 3px;
+  border-radius: 3px;
+}
+
+.mock-list {
+  flex: 1;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mock-list-item {
+  height: 10px;
+  background: #f5f5f7;
+  border-radius: 2px;
+}
+
+.mock-tab-bar {
+  height: 8px;
+  background: #f5f5f7;
+  border-top: 0.5px solid #e0e0e0;
+}
+
+/* Settings */
+.mock-ui--settings {
+  background: #f2f2f7;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+}
+
+.mock-nav-top {
+  height: 8px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+}
+
+.mock-settings-group {
+  background: white;
+  border-radius: 4px;
+  padding: 3px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mock-toggle-row {
+  height: 7px;
+  background: #f5f5f7;
+  border-radius: 2px;
+  position: relative;
+}
+
+.mock-toggle-row::after {
+  content: '';
+  position: absolute;
+  right: 3px;
+  top: 1px;
+  width: 10px;
+  height: 5px;
+  border-radius: 3px;
+  background: #34c759;
+}
+
+.mock-toggle-row:nth-child(2)::after {
+  background: #e0e0e0;
+}
+
+/* Checkout */
+.mock-ui--checkout {
+  background: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  gap: 3px;
+}
+
+.mock-form {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  align-content: flex-start;
+}
+
+.mock-input {
+  width: 100%;
+  height: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+}
+
+.mock-input--half {
+  width: calc(50% - 2px);
+}
+
+.mock-cta {
+  height: 10px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Geometric Illustration */
+.mock-illo--geo {
+  height: 100%;
+  background: #fef3e2;
+  position: relative;
+  overflow: hidden;
+}
+
+.geo--circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ff6b6b;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0.8;
+}
+
+.geo--triangle {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid #4ecdc4;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  opacity: 0.8;
+}
+
+.geo--rect {
+  width: 35px;
+  height: 20px;
+  background: #45b7d1;
+  position: absolute;
+  bottom: 12px;
+  left: 25px;
+  opacity: 0.8;
+  transform: rotate(-12deg);
+}
+
+.geo--dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2d3436;
+  position: absolute;
+}
+
+.geo--dot-1 { top: 8px; right: 14px; }
+.geo--dot-2 { bottom: 8px; left: 8px; }
+.geo--dot-3 { top: 45px; left: 50px; }
+
+/* Gradient Blobs */
+.mock-illo--gradient {
+  height: 100%;
+  background: #1a1a2e;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.gradient-blob--1 {
+  width: 50px;
+  height: 50px;
+  background: #e94560;
+  top: -5px;
+  left: -5px;
+  opacity: 0.7;
+}
+
+.gradient-blob--2 {
+  width: 40px;
+  height: 40px;
+  background: #0f3460;
+  top: 20px;
+  right: 5px;
+  opacity: 0.8;
+}
+
+.gradient-blob--3 {
+  width: 45px;
+  height: 45px;
+  background: #533483;
+  bottom: -5px;
+  left: 20px;
+  opacity: 0.7;
+}
+
+/* ========================================
+   Notes Window
+   ======================================== */
+
+.window--notes {
+  width: 720px;
+  height: 540px;
+  top: 80px;
+  left: calc(50% - 360px);
+}
+
+.window__content--notes {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.notes-sidebar {
+  width: 200px;
+  background: #f5f5f7;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.notes-sidebar__item {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.notes-sidebar__item--active {
+  background: rgba(0, 122, 255, 0.12);
+}
+
+.notes-sidebar__item strong {
+  display: block;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.notes-sidebar__item span {
+  color: var(--text-secondary);
+}
+
+.notes-body {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
+  background: white;
+}
+
+.notes-body h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.notes-body h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.notes-body__subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.notes-body p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.cv-entry {
+  margin-bottom: 14px;
+}
+
+.cv-entry strong {
+  font-size: 14px;
+  color: var(--text-primary);
+  display: block;
+}
+
+.cv-entry__meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.cv-entry p {
+  font-size: 13px;
+}
+
+/* ========================================
+   Dragged item on desktop
+   ======================================== */
+
+.desktop-item {
+  position: absolute;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: grab;
+  z-index: 50;
+  user-select: none;
+  transition: filter 0.15s;
+}
+
+.desktop-item:hover {
+  filter: brightness(1.1);
+}
+
+.desktop-item:active {
+  cursor: grabbing;
+}
+
+.desktop-item__preview {
+  width: 80px;
+  height: 64px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-item__name {
+  font-size: 11px;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  max-width: 100px;
+}
+
+/* ========================================
+   Focus state for windows
+   ======================================== */
+
+.window.is-focused {
+  z-index: 1200;
+}
+
+.window:not(.is-focused) .window__titlebar {
+  background: linear-gradient(180deg, #f6f6f6 0%, #e8e8e8 100%);
+}
+
+.window:not(.is-focused) .window__btn {
+  background: #d4d4d4 !important;
+  border-color: #c0c0c0;
+}
+
+/* ========================================
+   Scrollbar
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+  .dock__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .window--trash,
+  .window--notes {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 120px);
+    left: 10px;
+    top: 35px;
+  }
+
+  .notes-sidebar {
+    width: 140px;
+  }
+}
