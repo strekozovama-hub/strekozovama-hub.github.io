@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateTrashCount() {
     const count = trashContent.querySelectorAll('.trash-item').length;
-    trashCountEl.textContent = count;
+    if (trashCountEl) trashCountEl.textContent = count;
   }
   updateTrashCount();
 
@@ -711,6 +711,173 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Pencil settings
+  const pencilSettings = document.getElementById('pencil-settings');
+  const pencilColorSwatch = document.getElementById('pencil-color-swatch');
+  const pencilSizeInput = document.getElementById('pencil-size-input');
+  const pencilSizeSlider = document.getElementById('pencil-size-slider');
+  let pencilColor = '#1d1d1f';
+  let pencilSize = 2;
+
+  // Custom color picker
+  const colorPicker = document.getElementById('color-picker');
+  const cpSv = document.getElementById('cp-sv');
+  const cpSvCursor = document.getElementById('cp-sv-cursor');
+  const cpHue = document.getElementById('cp-hue');
+  const cpHueRow = document.getElementById('cp-hue-row');
+  const cpOpacity = document.getElementById('cp-opacity');
+  const cpOpacityGradient = document.getElementById('cp-opacity-gradient');
+  const cpOpacityLabel = document.getElementById('cp-opacity-label');
+  const cpSwatches = document.getElementById('cp-swatches');
+
+  let cpHueVal = 0, cpSat = 0, cpVal = 0.11; // initial dark color
+  let cpAlpha = 1;
+  let cpDraggingSV = false;
+
+  function hsvToRgb(h, s, v) {
+    let c = v * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = v - c;
+    let r, g, b;
+    if (h < 60) { r = c; g = x; b = 0; }
+    else if (h < 120) { r = x; g = c; b = 0; }
+    else if (h < 180) { r = 0; g = c; b = x; }
+    else if (h < 240) { r = 0; g = x; b = c; }
+    else if (h < 300) { r = x; g = 0; b = c; }
+    else { r = c; g = 0; b = x; }
+    return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
+  }
+
+  function rgbToHsv(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    let max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+    let h = 0, s = max === 0 ? 0 : d / max, v = max;
+    if (d !== 0) {
+      if (max === r) h = ((g - b) / d + 6) % 6;
+      else if (max === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+    }
+    return [h, s, v];
+  }
+
+  function rgbToHex(r, g, b) {
+    return '#' + [r, g, b].map(c => c.toString(16).padStart(2, '0')).join('');
+  }
+
+  function updateColorFromHSV() {
+    const [r, g, b] = hsvToRgb(cpHueVal, cpSat, cpVal);
+    const hex = rgbToHex(r, g, b);
+    pencilColor = cpAlpha < 1
+      ? `rgba(${r},${g},${b},${cpAlpha})`
+      : hex;
+    pencilColorSwatch.style.background = pencilColor;
+    // SV area hue background
+    cpSv.style.background = `hsl(${cpHueVal}, 100%, 50%)`;
+    cpSvCursor.style.left = (cpSat * 100) + '%';
+    cpSvCursor.style.top = ((1 - cpVal) * 100) + '%';
+    cpSvCursor.style.background = hex;
+    // Opacity gradient
+    if (cpOpacityGradient) {
+      cpOpacityGradient.style.background = `linear-gradient(to right, transparent, ${hex})`;
+    }
+    if (cpOpacityLabel) {
+      cpOpacityLabel.textContent = Math.round(cpAlpha * 100) + '%';
+    }
+    // Highlight matching swatch
+    if (cpSwatches) {
+      cpSwatches.querySelectorAll('.color-picker__swatch').forEach(sw => {
+        sw.classList.toggle('is-active', sw.dataset.color === hex);
+      });
+    }
+  }
+
+  function handleSVPick(e) {
+    const rect = cpSv.getBoundingClientRect();
+    cpSat = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    cpVal = Math.max(0, Math.min(1, 1 - (e.clientY - rect.top) / rect.height));
+    updateColorFromHSV();
+  }
+
+  if (cpSv) {
+    cpSv.addEventListener('mousedown', (e) => {
+      cpDraggingSV = true;
+      handleSVPick(e);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (cpDraggingSV) handleSVPick(e);
+    });
+    document.addEventListener('mouseup', () => { cpDraggingSV = false; });
+  }
+
+  if (cpHue) {
+    cpHue.addEventListener('input', (e) => {
+      cpHueVal = +e.target.value;
+      updateColorFromHSV();
+    });
+  }
+
+  if (cpOpacity) {
+    cpOpacity.addEventListener('input', (e) => {
+      cpAlpha = +e.target.value / 100;
+      updateColorFromHSV();
+    });
+  }
+
+  // Swatch click
+  if (cpSwatches) {
+    cpSwatches.addEventListener('click', (e) => {
+      const sw = e.target.closest('.color-picker__swatch');
+      if (!sw) return;
+      const color = sw.dataset.color;
+      const r = parseInt(color.slice(1, 3), 16);
+      const g = parseInt(color.slice(3, 5), 16);
+      const b = parseInt(color.slice(5, 7), 16);
+      const [h, s, v] = rgbToHsv(r, g, b);
+      cpHueVal = h; cpSat = s; cpVal = v;
+      cpHue.value = Math.round(h);
+      updateColorFromHSV();
+    });
+  }
+
+
+  // Toggle color picker from swatch
+  if (pencilColorSwatch) {
+    pencilColorSwatch.addEventListener('click', (e) => {
+      e.stopPropagation();
+      colorPicker.classList.toggle('is-open');
+    });
+  }
+
+  if (pencilSizeInput) {
+    pencilSizeInput.addEventListener('input', (e) => {
+      pencilSize = Math.max(1, Math.min(20, +e.target.value || 1));
+      pencilSizeSlider.value = pencilSize;
+    });
+  }
+  if (pencilSizeSlider) {
+    pencilSizeSlider.addEventListener('input', (e) => {
+      pencilSize = +e.target.value;
+      pencilSizeInput.value = pencilSize;
+    });
+  }
+
+  // Prevent drag from moving the toolbar or canvas
+  [pencilSettings, colorPicker].forEach(el => {
+    if (el) el.addEventListener('mousedown', (e) => { e.stopPropagation(); });
+  });
+
+  function closeColorPicker() {
+    if (colorPicker) colorPicker.classList.remove('is-open');
+  }
+
+  function closePencilSettings() {
+    if (pencilSettings) pencilSettings.classList.remove('is-open');
+    closeColorPicker();
+  }
+
+  // Initialize color picker display
+  updateColorFromHSV();
+
   // Tool switching
   toolButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -718,14 +885,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tool === 'sticky') {
         stickyColorPicker.classList.toggle('is-open');
         stickerPicker.classList.remove('is-open');
+        closePencilSettings();
         return;
       }
       if (tool === 'sticker') {
         // Handled by sticker-wrap listener
         return;
       }
+      if (tool === 'pencil') {
+        pencilSettings.classList.toggle('is-open');
+        stickyColorPicker.classList.remove('is-open');
+        stickerPicker.classList.remove('is-open');
+        toolButtons.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        activeTool = tool;
+        updateCursor();
+        return;
+      }
       stickyColorPicker.classList.remove('is-open');
       stickerPicker.classList.remove('is-open');
+      closePencilSettings();
       toolButtons.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
       activeTool = tool;
@@ -748,10 +927,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tool === 'sticker') {
       stickerPicker.classList.toggle('is-open');
       stickyColorPicker.classList.remove('is-open');
+      closePencilSettings();
+      return;
+    }
+    if (tool === 'pencil') {
+      pencilSettings.classList.toggle('is-open');
+      stickyColorPicker.classList.remove('is-open');
+      stickerPicker.classList.remove('is-open');
+      toolButtons.forEach(b => b.classList.remove('is-active'));
+      const btn = figjamToolbar.querySelector(`[data-tool="${tool}"]`);
+      if (btn) btn.classList.add('is-active');
+      activeTool = tool;
+      updateCursor();
       return;
     }
     stickyColorPicker.classList.remove('is-open');
     stickerPicker.classList.remove('is-open');
+    closePencilSettings();
     toolButtons.forEach(b => b.classList.remove('is-active'));
     const btn = figjamToolbar.querySelector(`[data-tool="${tool}"]`);
     if (btn) btn.classList.add('is-active');
@@ -759,13 +951,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCursor();
   });
 
-  // Close color picker on outside click
+  // Close popups on outside click
   document.addEventListener('mousedown', (e) => {
     if (!e.target.closest('.figjam-toolbar__sticky-wrap')) {
       stickyColorPicker.classList.remove('is-open');
     }
     if (!e.target.closest('.figjam-toolbar__sticker-wrap')) {
       stickerPicker.classList.remove('is-open');
+    }
+    if (!e.target.closest('.figjam-toolbar__pencil-wrap')) {
+      closePencilSettings();
+    } else if (!e.target.closest('.color-picker') && !e.target.closest('.pencil-settings__color')) {
+      closeColorPicker();
     }
   });
 
@@ -836,6 +1033,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let drawPoints = [];
 
   desktopArea.addEventListener('mousedown', (e) => {
+    // Close all toolbar popups on canvas click
+    closePencilSettings();
+    stickyColorPicker.classList.remove('is-open');
+    stickerPicker.classList.remove('is-open');
+
     if (activeTool !== 'pencil' && activeTool !== 'marker') return;
     if (e.target.closest('.figjam-toolbar') || e.target.closest('.sticker-picker') || e.target.closest('.window')) return;
 
@@ -858,8 +1060,8 @@ document.addEventListener('DOMContentLoaded', () => {
       path.setAttribute('stroke', 'rgba(240, 160, 192, 0.5)');
       path.setAttribute('stroke-width', '8');
     } else {
-      path.setAttribute('stroke', '#1d1d1f');
-      path.setAttribute('stroke-width', '2');
+      path.setAttribute('stroke', pencilColor);
+      path.setAttribute('stroke-width', String(pencilSize));
     }
     path.setAttribute('stroke-linecap', 'round');
     path.setAttribute('stroke-linejoin', 'round');
