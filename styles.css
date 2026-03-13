@@ -375,12 +375,19 @@ body {
   width: 40px;
   height: 44px;
   position: relative;
-  overflow: visible;
+  clip-path: inset(-100px -100px 0 -100px);
 }
 
-.figjam-toolbar__tool--pencil svg {
+.figjam-toolbar__tool--pencil img {
   position: absolute;
-  bottom: -2px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.figjam-toolbar__tool--pencil:hover img {
+  transform: translateX(-50%) translateY(-10px) scale(1.15);
 }
 
 /* Pencil settings popup */

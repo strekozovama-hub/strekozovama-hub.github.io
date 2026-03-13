@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // -- Active tool state --
   let activeTool = 'cursor';
+  let lastNonDrawTool = 'cursor';
 
   // -- Undo history --
   const undoStack = [];
@@ -104,18 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Skip UI panels
     if (e.target.closest('.figjam-toolbar') || e.target.closest('.sticker-picker') || e.target.closest('.window')) return;
 
-    if (activeTool === 'hand') {
+    if (activeTool === 'hand' || (activeTool === 'cursor' && !e.target.closest('.desktop-folder') && !e.target.closest('.sticky-note') && !e.target.closest('.desktop-item'))) {
       isPanning = true;
       panStartX = e.clientX - canvasX;
       panStartY = e.clientY - canvasY;
       deselectAll();
       desktopArea.style.cursor = 'grabbing';
-      e.preventDefault();
-    } else if (activeTool === 'cursor' && (e.target === desktopArea || e.target === canvas)) {
-      isPanning = true;
-      panStartX = e.clientX - canvasX;
-      panStartY = e.clientY - canvasY;
-      deselectAll();
       e.preventDefault();
     }
   });
@@ -130,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseup', () => {
     if (isPanning) {
       isPanning = false;
-      if (activeTool === 'hand') desktopArea.style.cursor = 'grab';
+      updateCursor();
     }
   });
 
@@ -908,6 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toolButtons.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
       activeTool = tool;
+      if (tool === 'cursor' || tool === 'hand') lastNonDrawTool = tool;
       updateCursor();
     });
   });
@@ -917,6 +913,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (document.activeElement.isContentEditable) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
+    // Esc exits to previous tool (cursor or hand)
+    if (e.key === 'Escape') {
+      closePencilSettings();
+      stickyColorPicker.classList.remove('is-open');
+      stickerPicker.classList.remove('is-open');
+      deselectAll();
+      const prevTool = lastNonDrawTool || 'cursor';
+      toolButtons.forEach(b => b.classList.remove('is-active'));
+      const btn = figjamToolbar.querySelector(`[data-tool="${prevTool}"]`);
+      if (btn) btn.classList.add('is-active');
+      activeTool = prevTool;
+      updateCursor();
+      return;
+    }
     const tool = shortcutMap[e.key.toLowerCase()];
     if (!tool) return;
     if (tool === 'sticky') {
@@ -948,6 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = figjamToolbar.querySelector(`[data-tool="${tool}"]`);
     if (btn) btn.classList.add('is-active');
     activeTool = tool;
+    if (tool === 'cursor' || tool === 'hand') lastNonDrawTool = tool;
     updateCursor();
   });
 
@@ -966,11 +977,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Custom circle cursor for pencil (8px)
+  const pencilCursorSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><circle cx='4' cy='4' r='3.5' fill='none' stroke='%231d1d1f' stroke-width='1'/></svg>`;
+  const pencilCursorUrl = `url("data:image/svg+xml,${pencilCursorSvg}") 4 4, crosshair`;
+
   function updateCursor() {
     if (activeTool === 'hand') {
       desktopArea.style.cursor = 'grab';
     } else if (activeTool === 'pencil' || activeTool === 'marker') {
-      desktopArea.style.cursor = 'crosshair';
+      desktopArea.style.cursor = pencilCursorUrl;
     } else {
       desktopArea.style.cursor = 'default';
     }
@@ -1096,9 +1111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     isDrawing = false;
 
     if (currentSvg && drawPoints.length > 1) {
-      // Make the drawing selectable & deletable
-      currentSvg.style.pointerEvents = 'auto';
-      currentSvg.style.cursor = 'pointer';
+      // SVG stays pointer-events:none, only the path is clickable
+      const pathEl = currentSvg.querySelector('path');
+      if (pathEl) pathEl.style.pointerEvents = 'stroke';
       const svgEl = currentSvg;
       pushUndo({ type: 'add', element: svgEl });
       svgEl.addEventListener('mousedown', (e) => {
