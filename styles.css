@@ -1002,6 +1002,32 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Folder message bubble */
+.folder-message {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 10px);
+  transform: translateY(-50%) translateX(4px);
+  background: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  width: 220px;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.folder-message.is-visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
 /* Placed stickers on desktop */
 .sticker {
   position: absolute;

@@ -460,13 +460,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Click to open folder link (only if not dragged)
+    // Click to open folder link or show message (only if not dragged)
     folder.addEventListener('click', () => {
       if (didMove) return;
       const href = folder.dataset.href;
-      if (href) window.open(href, '_blank');
+      if (href) { window.open(href, '_blank'); return; }
+      const msg = folder.dataset.message;
+      if (msg) showFolderMessage(folder, msg);
     });
   });
+
+  // Show message bubble above folder
+  function showFolderMessage(folder, text) {
+    const existing = folder.querySelector('.folder-message');
+    if (existing) { existing.remove(); return; }
+    const bubble = document.createElement('div');
+    bubble.className = 'folder-message';
+    bubble.innerHTML = text.replace(/\|/g, '<br>');
+    folder.appendChild(bubble);
+    setTimeout(() => bubble.classList.add('is-visible'), 10);
+    setTimeout(() => {
+      bubble.classList.remove('is-visible');
+      setTimeout(() => bubble.remove(), 300);
+    }, 4000);
+  }
 
   // ========================================
   // Stickers — drag from picker to canvas
