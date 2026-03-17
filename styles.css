@@ -99,14 +99,15 @@ body {
   top: calc(100% + 8px);
   left: 0;
   background: #f5f5f5;
-  border-radius: 40px;
+  border-radius: 32px;
   padding: 32px;
-  flex-direction: row;
+  flex-direction: column;
   gap: 24px;
   z-index: 1100;
   filter: drop-shadow(0 12px 48px rgba(0, 0, 0, 0.18));
-  box-shadow: inset 0 0 0 1px #D9D9D9;
+  box-shadow: inset 0 0 0 1.3px #D9D9D9;
   user-select: text;
+  width: 604px;
 }
 
 .about-card::before {
@@ -168,47 +169,58 @@ body {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.about-card__photo {
+.about-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.about-card__avatar {
   flex-shrink: 0;
-  width: 260px;
-  align-self: stretch;
-  border-radius: 30px;
+  width: 40px;
+  height: 39px;
+  border-radius: 8px;
   overflow: hidden;
 }
 
-.about-card__photo img {
+.about-card__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.about-card__content {
+.about-card__header-text {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 324px;
-  flex-shrink: 0;
-  position: relative;
+  gap: 2px;
+}
+
+.about-card__title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e1e1e;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  margin: 0;
+}
+
+.about-card__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #757575;
+  margin: 0;
 }
 
 .about-card__body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-.about-card__title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: #252525;
-  line-height: 1.1;
-  letter-spacing: 0;
-  margin: 0;
 }
 
 .about-card__wave {
   display: inline-block;
+  font-size: 20px;
   animation: wave 1.5s ease-in-out infinite;
   transform-origin: 70% 70%;
 }
@@ -222,35 +234,37 @@ body {
 
 .about-card__text {
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: 0;
-  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #757575;
   margin: 0;
 }
 
-.about-card__body .about-card__text + .about-card__text {
-  margin-top: 0;
+.about-card__text strong {
+  font-weight: 700;
+  color: #1e1e1e;
 }
 
 .about-card__bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
 }
 
-.about-card__text--collab {
-  font-weight: 400;
-  color: black;
-  letter-spacing: -0.02em;
+.about-card__tags {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #757575;
+  letter-spacing: -0.28px;
+  margin: 0;
 }
 
 .about-card__cta {
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #d25738;
   text-decoration: none;
   letter-spacing: -0.02em;
