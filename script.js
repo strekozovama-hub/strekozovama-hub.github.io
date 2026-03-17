@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const col = +f.dataset.col;
       const row = +f.dataset.row;
       f.style.left = (baseX + col * colGap) + 'px';
-      f.style.top = (aboutTopCanvas - 32 + row * rowGap) + 'px';
+      const extraOffset = f.id === 'folder-artist' ? 8 : 0;
+      f.style.top = (aboutTopCanvas - 32 + row * rowGap + extraOffset) + 'px';
     });
   })();
 
