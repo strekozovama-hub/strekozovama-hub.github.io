@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // -- Position desktop folders relative to viewport --
   (function positionFolders() {
-    const folders = document.querySelectorAll('.desktop-folder[data-col]');
+    const folders = document.querySelectorAll('.desktop-folder[data-col], .tools-widget[data-col]');
     if (!folders.length) return;
     const colGap = 140, rowGap = 160;
     // Spotify player right edge in canvas coords
@@ -463,11 +463,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Click to open folder link or show message (only if not dragged)
     folder.addEventListener('click', () => {
       if (didMove) return;
+      // iOS-style folder — toggle expanded view
+      if (folder.classList.contains('ios-folder')) {
+        const expanded = folder.querySelector('.ios-folder__expanded');
+        if (expanded) expanded.classList.toggle('is-open');
+        return;
+      }
       const href = folder.dataset.href;
       if (href) { window.open(href, '_blank'); return; }
       const msg = folder.dataset.message;
       if (msg) showFolderMessage(folder, msg);
     });
+  });
+
+  // iOS folder: stop link clicks from toggling folder & close on click outside
+  document.querySelectorAll('.ios-folder__app').forEach(link => {
+    link.addEventListener('click', (e) => e.stopPropagation());
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.ios-folder')) {
+      document.querySelectorAll('.ios-folder__expanded.is-open').forEach(el => el.classList.remove('is-open'));
+    }
   });
 
   // Show message bubble above folder

@@ -49,11 +49,7 @@ body {
   flex: 1;
   position: relative;
   overflow: hidden;
-  cursor: grab;
-}
-
-.desktop__area:active {
-  cursor: grabbing;
+  cursor: default;
 }
 
 .desktop__canvas {
@@ -1016,6 +1012,92 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* iOS-style folder */
+.ios-folder {
+  cursor: pointer;
+}
+
+.ios-folder__grid {
+  width: 80px;
+  height: 80px;
+  background: rgba(180, 180, 180, 0.35);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.ios-folder__grid img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ios-folder__expanded {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(245, 245, 245, 0.92);
+  backdrop-filter: blur(40px);
+  border-radius: 20px;
+  padding: 20px;
+  z-index: 1200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  min-width: 220px;
+}
+
+.ios-folder__expanded.is-open {
+  display: block;
+}
+
+.ios-folder__header {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ios-folder__apps {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.ios-folder__app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.ios-folder__app:hover {
+  transform: scale(1.1);
+}
+
+.ios-folder__app img {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+}
+
+.ios-folder__app span {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-align: center;
+}
+
 /* Folder message bubble */
 .folder-message {
   position: absolute;
@@ -1168,6 +1250,10 @@ body {
 }
 
 .dock__item--static:hover {
+  transform: none;
+}
+
+.dock__item--no-bounce:hover {
   transform: none;
 }
 
