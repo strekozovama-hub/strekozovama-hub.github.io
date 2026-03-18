@@ -12,6 +12,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="Images/apple-touch-icon.png">
   <link rel="stylesheet" href="mobile.css">
+  <script>
+    if (window.innerWidth >= 1200) {
+      window.location.replace('index.html');
+    }
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1200) window.location.replace('index.html');
+    });
+  </script>
 </head>
 <body>
 
@@ -19,8 +27,8 @@
   <header class="topbar">
     <span class="topbar__time" id="topbar-time">9:41</span>
     <div class="topbar__actions">
-      <a href="https://marinastrekozova.notion.site/Hello-I-m-Marina-e9ede9b9a9c648108bc82512412d8404?source=copy_link" target="_blank" class="topbar__link">Portfolio</a>
       <a href="mailto:strekozova.ma@gmail.com" class="topbar__link">Mail me</a>
+      <a href="https://marinastrekozova.notion.site/Hello-I-m-Marina-e9ede9b9a9c648108bc82512412d8404?source=copy_link" target="_blank" class="topbar__link">Portfolio</a>
       <a href="cv.pdf" target="_blank" class="topbar__link">CV</a>
     </div>
   </header>
@@ -35,9 +43,7 @@
       <h1 class="hero__name">Hi! I'm Marina <span class="hero__wave">👋</span></h1>
       <p class="hero__title">Product Designer · Illustrator</p>
       <div class="hero__tags">
-        <span class="hero__tag">FinTech</span>
-        <span class="hero__tag">HealthTech</span>
-        <span class="hero__tag">SaaS</span>
+        <span class="hero__tag">FinTech · HealthTech · SaaS</span>
       </div>
       <a href="mailto:strekozova.ma@gmail.com" class="hero__cta">
         Hire me
@@ -60,8 +66,7 @@
   <!-- Work -->
   <section class="section">
     <div class="section__header">
-      <h2 class="section__title">Work</h2>
-      <span class="section__count">8 projects</span>
+      <h2 class="section__title">Projects</h2>
     </div>
     <div class="projects">
 
@@ -180,72 +185,38 @@
     </div>
   </section>
 
-  <!-- Tools -->
+  <!-- Tools & Let's talk -->
   <section class="section">
-    <div class="section__header">
-      <h2 class="section__title">Tools</h2>
-    </div>
-    <div class="tools">
-      <a class="tool" href="https://figma.com" target="_blank">
-        <img class="tool__icon" src="Images/figma.png" alt="Figma">
-        <span class="tool__name">Figma</span>
-      </a>
-      <a class="tool" href="https://claude.ai" target="_blank">
-        <img class="tool__icon" src="Images/claude.png" alt="Claude">
-        <span class="tool__name">Claude</span>
-      </a>
-      <a class="tool" href="https://chatgpt.com" target="_blank">
-        <img class="tool__icon" src="Images/chatgpt.png" alt="ChatGPT">
-        <span class="tool__name">ChatGPT</span>
-      </a>
-      <a class="tool" href="https://miro.com" target="_blank">
-        <img class="tool__icon" src="Images/miro.png" alt="Miro">
-        <span class="tool__name">Miro</span>
-      </a>
-    </div>
-  </section>
+    <div class="ios-folders">
 
-  <!-- Contact -->
-  <section class="section section--contact">
-    <div class="section__header">
-      <h2 class="section__title">Let's talk</h2>
-    </div>
-    <div class="contacts">
-      <a class="contact" href="mailto:strekozova.ma@gmail.com">
-        <img class="contact__icon" src="Images/mail.png" alt="Mail">
-        <div class="contact__info">
-          <span class="contact__value">strekozova.ma@gmail.com</span>
+      <div class="ios-folder-widget">
+        <div class="ios-folder-widget__grid">
+          <a href="https://figma.com" target="_blank"><img src="Images/figma.png" alt="Figma"></a>
+          <a href="https://claude.ai" target="_blank"><img src="Images/claude.png" alt="Claude"></a>
+          <a href="https://chatgpt.com" target="_blank"><img src="Images/chatgpt.png" alt="ChatGPT"></a>
+          <a href="https://miro.com" target="_blank"><img src="Images/miro.png" alt="Miro"></a>
         </div>
-        <span class="contact__arrow">↗</span>
-      </a>
-      <a class="contact" href="https://www.linkedin.com/in/marina-strekozova/" target="_blank">
-        <img class="contact__icon" src="Images/linkedin.png" alt="LinkedIn">
-        <div class="contact__info">
-          <span class="contact__value">marina-strekozova</span>
+        <span class="ios-folder-widget__label">Tools</span>
+      </div>
+
+      <div class="ios-folder-widget">
+        <div class="ios-folder-widget__grid ios-folder-widget__grid--3">
+          <a href="mailto:strekozova.ma@gmail.com"><img src="Images/mail.png" alt="Mail"></a>
+          <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank"><img src="Images/linkedin.png" alt="LinkedIn"></a>
+          <a href="https://t.me/malibelula" target="_blank"><img src="Images/telegram.png" alt="Telegram"></a>
         </div>
-        <span class="contact__arrow">↗</span>
+        <span class="ios-folder-widget__label">Let's talk</span>
+      </div>
+
+      <a class="app-shortcut" href="https://marinastrekozova.notion.site/Hello-I-m-Marina-e9ede9b9a9c648108bc82512412d8404?source=copy_link" target="_blank">
+        <img src="Images/notion.png" alt="Notion">
+        <span>Portfolio</span>
       </a>
-      <a class="contact" href="https://t.me/malibelula" target="_blank">
-        <img class="contact__icon" src="Images/telegram.png" alt="Telegram">
-        <div class="contact__info">
-          <span class="contact__value">@malibelula</span>
-        </div>
-        <span class="contact__arrow">↗</span>
+      <a class="app-shortcut" href="cv.pdf" target="_blank">
+        <img src="Images/notes.png" alt="CV">
+        <span>CV</span>
       </a>
-      <a class="contact" href="https://marinastrekozova.notion.site/Hello-I-m-Marina-e9ede9b9a9c648108bc82512412d8404?source=copy_link" target="_blank">
-        <img class="contact__icon" src="Images/notion.png" alt="Notion">
-        <div class="contact__info">
-          <span class="contact__value">Portfolio</span>
-        </div>
-        <span class="contact__arrow">↗</span>
-      </a>
-      <a class="contact contact--cv" href="cv.pdf" target="_blank">
-        <img class="contact__icon" src="Images/notes.png" alt="CV">
-        <div class="contact__info">
-          <span class="contact__value">CV</span>
-        </div>
-        <span class="contact__arrow">↓</span>
-      </a>
+
     </div>
   </section>
 

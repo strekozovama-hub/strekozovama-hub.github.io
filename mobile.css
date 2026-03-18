@@ -189,11 +189,14 @@ body {
   font-size: 14px;
   font-weight: 400;
   color: var(--text-secondary);
-  background: var(--surface);
-  border: none;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 4px 12px;
   letter-spacing: 0.1px;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .hero__cta {
@@ -228,11 +231,11 @@ body {
 }
 
 .about__card {
-  background: #f5f5f5;
+  background: #ffffff;
   border-radius: 24px;
   padding: 24px;
   box-shadow: var(--shadow);
-  border: 1.3px solid #D9D9D9;
+  border: none;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -382,7 +385,8 @@ body {
   flex-direction: column;
   gap: 2px;
   background: var(--surface);
-  border-radius: var(--radius);
+  border-radius: 32px;
+  padding: 20px;
   overflow: hidden;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
@@ -396,6 +400,7 @@ body {
   text-decoration: none;
   color: inherit;
   background: var(--surface);
+  border-radius: 16px;
   transition: background 0.12s ease;
   cursor: pointer;
   -webkit-user-select: none;
@@ -419,8 +424,8 @@ body {
 }
 
 .project__icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -433,16 +438,16 @@ body {
 }
 
 .project__icon {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 }
 
 .project__icon--app {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 18px;
 }
 
 .project__info {
@@ -497,41 +502,66 @@ body {
 }
 
 /* ===================================================
-   TOOLS
+   iOS FOLDER WIDGETS (Tools & Let's talk)
    =================================================== */
 
-.tools {
+.ios-folders {
   display: flex;
-  justify-content: space-around;
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  padding: 16px 8px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
-.tool {
+.ios-folder-widget {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
+}
+
+.ios-folder-widget__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  width: 250px;
+  height: 250px;
+  padding: 30px;
+  background: rgba(200, 200, 200, 0.35);
+  border-radius: 32px;
   text-decoration: none;
   transition: transform 0.15s ease;
 }
 
-.tool:active {
-  transform: scale(0.94);
+.ios-folder-widget__grid:active {
+  transform: scale(0.95);
 }
 
-.tool__icon {
-  width: 44px;
-  height: 44px;
+.ios-folder-widget__grid img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   border-radius: 8px;
 }
 
-.tool__name {
-  font-size: 11px;
+.ios-folder-widget__grid a {
+  display: flex;
+  transition: transform 0.15s ease;
+}
+
+.ios-folder-widget__grid a:active {
+  transform: scale(0.9);
+}
+
+.ios-folder-widget__grid--3 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.ios-folder-widget__label {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-secondary);
   letter-spacing: 0.1px;
@@ -622,6 +652,46 @@ body {
 .contact--cv .contact__value {
   color: var(--accent);
   font-weight: 600;
+}
+
+
+/* ===================================================
+   APP SHORTCUTS (Portfolio & CV)
+   =================================================== */
+
+.app-shortcuts {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.app-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+  margin-top: 32px;
+}
+
+.app-shortcut:active {
+  transform: scale(0.94);
+}
+
+.app-shortcut img {
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.app-shortcut span {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.1px;
 }
 
 /* ===================================================
