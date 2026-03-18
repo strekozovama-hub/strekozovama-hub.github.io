@@ -509,7 +509,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -525,9 +525,9 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 6px;
-  width: calc((100vw - var(--pad) * 2 - 24px) / 2);
+  width: calc((100vw - var(--pad) * 2 - 32px) / 3);
   aspect-ratio: 1;
-  padding: 18px;
+  padding: 14px;
   background: rgba(200, 200, 200, 0.35);
   border-radius: 32px;
   text-decoration: none;
@@ -672,7 +672,7 @@ body {
   gap: 6px;
   text-decoration: none;
   transition: transform 0.15s ease;
-  margin-top: 32px;
+  margin-top: 14px;
 }
 
 .app-shortcut:active {
@@ -680,8 +680,8 @@ body {
 }
 
 .app-shortcut img {
-  width: 92px;
-  height: 92px;
+  width: calc(((100vw - var(--pad) * 2 - 32px) / 3 - 28px) / 2 - 3px);
+  height: calc(((100vw - var(--pad) * 2 - 32px) / 3 - 28px) / 2 - 3px);
   object-fit: contain;
   border-radius: 12px;
 }
