@@ -525,9 +525,9 @@ body {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 6px;
-  width: 250px;
-  height: 250px;
-  padding: 30px;
+  width: calc((100vw - var(--pad) * 2 - 24px) / 2);
+  aspect-ratio: 1;
+  padding: 18px;
   background: rgba(200, 200, 200, 0.35);
   border-radius: 32px;
   text-decoration: none;
