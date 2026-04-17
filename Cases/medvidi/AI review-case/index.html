@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chart Review — MEDvidi Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,300;1,14..32,400;1,14..32,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="back-nav">
+  <div class="container">
+    <a href="javascript:history.length > 1 ? history.back() : window.location.href='#context'" class="nav-back" aria-label="Go back">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    </a>
+    <ul class="nav-anchors">
+      <li><a href="#context">Context</a></li>
+      <li><a href="#challenge">Challenge</a></li>
+      <li><a href="#decisions">Decisions</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══════════════ HERO / CONTEXT ══════════════ -->
+  <section class="hero" id="context">
+    <div class="container">
+
+      <div class="hero-meta-row">
+        <span class="hero-tag">product: MEDvidi</span>
+        <span class="hero-tag">segment: B2B · HealthTech</span>
+        <span class="hero-tag">platform: Web</span>
+      </div>
+
+      <h1>AI Chart Review</h1>
+      <p class="hero-subtitle">
+        Transforming a fragmented manual process into a scalable, compliant<br>
+        <strong>ecosystem</strong>: Started as an <em class="hero-em-light">AI chart review</em> workflow for one user role<br>
+        and evolved into an <em class="hero-em-bold">AI tool</em> supporting core tasks across three roles.
+      </p>
+
+    </div>
+
+    <div class="container">
+      <span class="section-label"><span class="label-num">(01)</span> Context</span>
+    </div>
+
+    <div class="hero-visual">
+      <div class="container">
+        <div class="hero-image hero-image--wide">
+          <img src="images/Hero%20block/peer%20review.png" alt="AI Chart Review — peer review queue" />
+        </div>
+      </div>
+      <div class="hero-image-bg">
+        <div class="container">
+          <div class="hero-dashboard" aria-label="AI Chart Review — dashboard overview">
+            <div class="hero-dashboard-status hero-image">
+              <img src="images/Medops/Status%20filter.png" alt="AI Chart Review — status summary" />
+            </div>
+            <div class="hero-dashboard-overview hero-image">
+              <img src="images/Medops/Review%20plan%20made%20tiles.png" alt="AI Chart Review — overview tiles" />
+            </div>
+            <div class="hero-dashboard-cards">
+              <div class="hero-dashboard-card hero-image">
+                <img src="images/Medops/Provider%20tile%201.png" alt="AI Chart Review — provider tile 1" />
+              </div>
+              <div class="hero-dashboard-card hero-image">
+                <img src="images/Medops/Provider%20tile%202.png" alt="AI Chart Review — provider tile 2" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="goal-section">
+        <span class="goal-label">Goal</span>
+        <p class="goal-text">
+          Eliminate legal compliance risks and reduce administrative overhead<br>by&nbsp;automating <em class="goal-em">100%</em> of the chart review cycle.
+        </p>
+      </div>
+
+      <div class="star-divider"></div>
+
+      <div class="star-grid">
+        <div class="star-col">
+          <span class="star-label">Situation</span>
+          <ul class="star-list">
+            <li>Manual Excel reviews</li>
+            <li>Compliance black hole</li>
+            <li>Legal security risks</li>
+          </ul>
+        </div>
+        <div class="star-col">
+          <span class="star-label">Task</span>
+          <ul class="star-list">
+            <li>Centralize audits</li>
+            <li>Automate with AI</li>
+            <li>Enable scaling</li>
+          </ul>
+        </div>
+        <div class="star-col">
+          <span class="star-label">Action</span>
+          <ul class="star-list">
+            <li>AI-augmented UX</li>
+            <li>Integrated CRM flow</li>
+            <li>Multi-role system</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="result-section">
+        <span class="result-label">Result</span>
+        <div class="impact-strip impact-strip--four">
+          <div class="impact-item">
+            <div class="impact-number">24<span class="impact-suffix">%</span></div>
+            <div class="impact-label">Reduction in operational workload</div>
+          </div>
+          <div class="impact-item">
+            <div class="impact-number">41<span class="impact-suffix"> sec</span></div>
+            <div class="impact-label">Review time instead of 10–15 minutes</div>
+          </div>
+          <div class="impact-item impact-item--accent">
+            <div class="impact-number">100<span class="impact-suffix">%</span></div>
+            <div class="impact-label">Charts AI reviewed</div>
+          </div>
+          <div class="impact-item">
+            <div class="impact-number">3<span class="impact-suffix"> roles</span></div>
+            <div class="impact-label">Cross-functional system scale</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="star-divider"></div>
+
+      <!-- ── (01) Challenge ── -->
+      <section id="challenge">
+        <span class="section-label"><span class="label-num">(02)</span> Challenge</span>
+
+        <div class="two-col" style="align-items: start;">
+          <div>
+            <h2>Business Risks &amp;<br>Legal Compliance</h2>
+          </div>
+          <div>
+            <p>
+              Original chart review was a fragmented, manual workflow relying on external spreadsheets. This created a compliance black hole: with no centralized tracking, the business couldn't programmatically prove that 100% of charts were being reviewed.
+            </p>
+            <p>
+              Moving sensitive medical data outside the system created significant <strong>HIPAA risks</strong>, while the lack of an audit trail left the company vulnerable to legal challenges regarding clinical quality.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="star-divider"></div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ DECISIONS ══════════════ -->
+  <section class="roles-intro-section" id="decisions">
+    <div class="container">
+
+      <span class="section-label section-label--notop"><span class="label-num">(03)</span> Decisions</span>
+
+      <h2 class="roles-intro-heading">Design one product for three different needs</h2>
+
+      <p class="decisions-subtitle">
+        The task — to design one coherent <em class="decisions-em">AI-powered</em> experience that would support review<br>
+        efficiency, documentation quality transparency, and compliance operations in the same<br>
+        system.
+      </p>
+
+      <div class="three-col decision-cards-grid">
+        <div class="decision-img-card">
+          <img src="images/Cards%20in%20decisions%20block/Reviewer%20card.png" alt="Reviewers" />
+        </div>
+        <div class="decision-img-card">
+          <img src="images/Cards%20in%20decisions%20block/Provider%20card.png" alt="Providers" />
+        </div>
+        <div class="decision-img-card">
+          <img src="images/Cards%20in%20decisions%20block/MedOps%20card.png" alt="MedOps" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="solution-summary-block" id="solution">
+    <div class="container">
+      <div class="solution-transition" aria-hidden="true"></div>
+    </div>
+    <div class="solution-summary">
+      <div class="container">
+        <span class="section-label section-label--notop"><span class="label-num">(04)</span> Solution</span>
+        <h2 class="solution-summary-title">A unified <em>AI-powered</em> chart review system</h2>
+        <p class="solution-summary-intro">
+          I designed one connected product with dedicated experiences for Reviewers, Providers, and MedOps.
+        </p>
+
+        <div class="solution-summary-list">
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>Reviewer workflow</h3>
+              <p>Assigned charts in one place, in-system review flow, contextual comments, and AI-generated score validation against clinic criteria.</p>
+            </div>
+          </div>
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>Provider transparency</h3>
+              <p>Access to personal charts, AI-based scoring by clinic protocol, visibility into strengths and weak spots, clear feedback loop for improvement.</p>
+            </div>
+          </div>
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>MedOps dashboard</h3>
+              <p>Clinic-wide compliance overview, provider quality monitoring, problem area detection, review plan tracking and manual assignment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ SOLUTION (Reviewers + Providers + MedOps) ══════════════ -->
+  <div class="section-bg">
+
+    <!-- REVIEWERS -->
+    <div class="role-section">
+      <div class="container">
+        <span class="role-tag">Reviewers</span>
+        <h2 class="role-heading">The Decision Makers</h2>
+
+        <div class="role-intro">
+          <span class="role-focus">Focus: Speed, Accuracy, and AI-Augmentation.</span>
+          <p class="role-body">
+            I designed a high-velocity workspace where reviewers transition from manual data entry<br>to <strong>strategic validation</strong>. The UI surface provides a side-by-side view of the patient chart<br>and <span class="text-secondary">AI-generated insights</span>, allowing experts to verify or contest flags with a single click.<br>This hybrid human-in-the-loop approach ensures medical accuracy while maintaining record-breaking processing speeds.
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="screen-card screen-card--top reviewer-primary-screen">
+          <img src="images/Reviewer/Reviewer%20block.png" alt="Reviewer — chart review workspace" />
+        </div>
+      </div>
+    </div>
+
+    <!-- PROVIDERS -->
+    <div class="role-section" id="providers">
+      <div class="container">
+        <span class="role-tag">Providers</span>
+        <h2 class="role-heading">Continuous Growth</h2>
+        <div class="role-intro">
+          <span class="role-focus">Focus: Transparency, Feedback Loop, and Performance.</span>
+          <p class="role-body">
+            To eliminate the 'black box' feeling of medical audits, I created a <strong>transparency dashboard</strong> for providers. Instead of just receiving a final score, doctors can explore specific points for growth and see the exact reasoning behind every flag. This transforms a punitive audit process into a collaborative tool for professional development and clinical excellence.
+          </p>
+        </div>
+      </div>
+
+      <div class="container provider-gallery">
+        <div class="screen-card screen-card--top">
+          <img src="images/Provider/My%20score%20desk.png" alt="Provider — quality score dashboard" />
+        </div>
+        <div class="screen-card provider-tiles-card">
+          <img src="images/Provider/tiles.png" alt="Provider — insight cards" />
+        </div>
+        <div class="screen-card screen-card--top provider-bottom-screen">
+          <img src="images/Provider/My%20charts%20desk.png" alt="Provider — charts list" />
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDOPS -->
+    <div class="role-section" id="medops">
+      <div class="container">
+        <span class="role-tag">MedOps</span>
+        <h2 class="role-heading">Strategic Oversight</h2>
+        <div class="role-intro">
+          <span class="role-focus">Focus: Compliance, Risk Management, and Scalability.</span>
+          <p class="role-body">
+            For the operations team, I built a <strong>"Command Center"</strong> focused on total visibility. The dashboard tracks real-time compliance scores across the entire organization and drills down into individual provider performance. Most importantly, it monitors the execution of the legal review plan, ensuring the business meets its 100% audit obligations and stays 'audit-ready' at all times
+          </p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="screen-card screen-card--top">
+          <img src="images/Medops/Providers%20desk.png" alt="MedOps — providers overview" />
+        </div>
+        <div class="screen-card medops-secondary-screen">
+          <img src="images/Medops/MedOps%20charts.png" alt="MedOps — critical scenarios shortcuts" />
+        </div>
+        <div class="screen-card medops-secondary-screen">
+          <img src="images/Medops/Peer%20review.png" alt="MedOps — peer review reassignment" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ IMPACT ══════════════ -->
+  <section class="section" id="impact">
+    <div class="container">
+      <span class="section-label"><span class="label-num">(05)</span> Impact</span>
+      <div class="impact-summary">
+        <h2 class="solution-summary-title">From a narrow workflow to organizational Growth</h2>
+        <p class="impact-summary-intro">
+          "What started as a niche tool for chart reviewers evolved into a centralized product surface serving three core organizational functions. By unifying <em>Reviewers</em>, <em>Providers</em>, and <em>MedOps</em> within a single <strong>AI-driven</strong> ecosystem, we didn't just speed up a task — we created a new standard for operational transparency."<br>
+          The results reached far beyond the UI:
+        </p>
+        <div class="solution-summary-list">
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>Operational Velocity</h3>
+              <p>Automated <strong>100%</strong> of the audit queue, shifting the team from manual lookup to strategic validation.</p>
+            </div>
+          </div>
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>Quality Visibility</h3>
+              <p>Providers gained a clear roadmap for growth, reducing friction and administrative <strong>"black boxes."</strong></p>
+            </div>
+          </div>
+          <div class="solution-summary-item">
+            <div class="solution-summary-icon" aria-hidden="true">↗</div>
+            <div>
+              <h3>Compliance Control</h3>
+              <p>MedOps moved from fragmented Excel files to a <strong>"bird's-eye view"</strong> of legal safety and risk.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ REFLECTION ══════════════ -->
+  <section class="reflection-block" id="reflection">
+    <div class="container">
+      <span class="section-label section-label--dark"><span class="label-num">(06)</span> Reflection</span>
+      <h2 class="reflection-title">Designing for Trust</h2>
+      <div class="reflection-copy">
+        <p>
+          In a compliance-heavy environment like HealthTech, trust is as critical as speed. AI was central to the new workflow, but I designed it to augment decision-making rather than replace it.
+        </p>
+        <p>
+          By structuring <strong>AI scores</strong> around familiar clinical criteria and making them easy to verify, we eliminated the "black box" effect. This ensured that doctors felt empowered by the tool, not replaced by it. My key takeaway: in sensitive workflows, the goal of AI is not total automation, but high-velocity oversight with human accountability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="case-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-text">2025&nbsp;&nbsp;&nbsp;MEDvidi · AI Chart Review</p>
+        <a href="#" class="footer-cta">
+          Next Case
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+// ── Squircle: Figma corner smoothing via clip-path ────────────────────────
+(function () {
+  // Bezier constant for circle approximation: 4/3 * tan(π/8)
+  const C = 0.5519150244935105;
+
+  function squirclePath(w, h, r, s) {
+    r = Math.min(r, w / 2, h / 2);
+    if (r <= 0) return null;
+    // Extend arc start/end beyond radius based on smoothing
+    const a = r + r * s * (Math.SQRT2 - 1);
+    const t = a * C;
+    return [
+      `M${a} 0`, `H${w - a}`,
+      `C${w - a + t} 0 ${w} ${a - t} ${w} ${a}`,
+      `V${h - a}`,
+      `C${w} ${h - a + t} ${w - a + t} ${h} ${w - a} ${h}`,
+      `H${a}`,
+      `C${a - t} ${h} 0 ${h - a + t} 0 ${h - a}`,
+      `V${a}`,
+      `C0 ${a - t} ${a - t} 0 ${a} 0 Z`
+    ].join(' ');
+  }
+
+  const S = 0.6;
+  const targets = [
+    ['.impact-item, .decision-card, .screen-card, .hero-image, .quote-block, .screens-stack, .decision-img-card', 24, S],
+    ['.hero-image-bg, .section-bg', 80, S],
+  ];
+
+  function apply(el) {
+    const w = el.offsetWidth, h = el.offsetHeight;
+    const p = w && h ? squirclePath(w, h, el._sqR, el._sqS) : null;
+    if (p) el.style.clipPath = `path('${p}')`;
+  }
+
+  function init() {
+    const ro = new ResizeObserver(entries =>
+      entries.forEach(e => apply(e.target))
+    );
+    targets.forEach(([sel, r, s]) => {
+      document.querySelectorAll(sel).forEach(el => {
+        el._sqR = r;
+        el._sqS = s;
+        apply(el);
+        ro.observe(el);
+      });
+    });
+  }
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', init)
+    : init();
+})();
+</script>
+
+<script>
+const navLinks = document.querySelectorAll('.nav-anchors a');
+const sections = document.querySelectorAll('#context, #challenge, #decisions, #solution, #impact, #reflection');
+
+function updateNav() {
+  const scrollY = window.scrollY;
+  let current = '';
+  sections.forEach(s => {
+    if (scrollY >= s.offsetTop - 240) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// ── Nav shrink on scroll ──
+const nav = document.querySelector('.back-nav');
+function updateNavSize() {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', updateNavSize, { passive: true });
+updateNavSize();
+</script>
+
+</body>
+</html>
