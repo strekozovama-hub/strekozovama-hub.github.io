@@ -55,7 +55,7 @@ a { color: inherit; text-decoration: none; }
 .nav-back {
   display: flex;
   align-items: center;
-  color: var(--text);
+  color: #303030;
   transition: opacity 0.2s;
 }
 
@@ -711,7 +711,7 @@ p + p { margin-top: 16px; }
   font-size: 24px;
   line-height: 1.5;
   color: #444444;
-  max-width: 680px;
+  max-width: none;
   margin-bottom: 32px;
 }
 
@@ -1136,29 +1136,64 @@ p + p { margin-top: 16px; }
   color: #FFFFFF;
 }
 
+.reflection-emphasis {
+  font-weight: 500;
+  font-style: italic;
+  color: #B3B3B3;
+}
+
 /* ── Footer ── */
 .case-footer {
   padding: 80px 0 64px;
   background: #2F2B2B;
 }
 
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.footer-heading {
+  font-size: 24px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  color: #F3F3F3;
+}
+
+.footer-case-card {
+  width: min(100%, 282px);
+  margin-bottom: 40px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.footer-case-card img {
+  width: 100%;
+  display: block;
+}
+
 .footer-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
 .footer-text {
   font-size: 18px;
   line-height: 1.2;
-  color: #B3B3B3;
+  color: #7F7B7B;
   letter-spacing: -0.01em;
 }
 
-.footer-dot {
-  color: #FF68C7;
-  font-size: 16px;
-  vertical-align: middle;
+.footer-meta {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #7F7B7B;
+  letter-spacing: -0.01em;
 }
 
 .footer-cta {
@@ -1169,14 +1204,19 @@ p + p { margin-top: 16px; }
   background: transparent;
   color: #F5F5F5;
   border-radius: 0;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1.2;
   transition: opacity 0.2s;
 }
 
 .footer-cta:hover { opacity: 0.8; }
 .footer-cta svg { width: 28px; height: 28px; }
+
+.footer-cta--disabled {
+  color: #7F7B7B;
+  pointer-events: none;
+}
 
 /* ── Responsive ── */
 @media (max-width: 1100px) {
@@ -1244,6 +1284,14 @@ p + p { margin-top: 16px; }
   .two-col { gap: 32px; }
   .solution-role { margin-top: 48px; }
   .hero-dashboard-cards { grid-template-columns: 1fr; }
+  .footer-top,
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-case-card {
+    width: min(100%, 320px);
+  }
 }
 
 @media (max-width: 600px) {
