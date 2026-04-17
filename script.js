@@ -471,7 +471,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       const href = folder.dataset.href;
-      if (href) { window.open(href, '_blank'); return; }
+      if (href) {
+        const target = folder.dataset.target || '_blank';
+        if (target === '_self') window.location.href = href;
+        else window.open(href, target);
+        return;
+      }
       const msg = folder.dataset.message;
       if (msg) showFolderMessage(folder, msg);
     });
