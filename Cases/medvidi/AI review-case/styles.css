@@ -133,6 +133,8 @@ a { color: inherit; text-decoration: none; }
 
 .hero-subtitle strong {
   color: #444444;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .hero-em-light {
@@ -1164,10 +1166,15 @@ p + p { margin-top: 16px; }
 }
 
 .footer-case-card {
-  width: min(100%, 282px);
+  width: 50%;
+  max-width: 530px;
   margin-bottom: 40px;
-  border-radius: 16px;
-  overflow: hidden;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.footer-case-card:hover {
+  opacity: 1;
 }
 
 .footer-case-card img {
@@ -1291,6 +1298,7 @@ p + p { margin-top: 16px; }
   }
   .footer-case-card {
     width: min(100%, 320px);
+    max-width: 320px;
   }
 }
 
