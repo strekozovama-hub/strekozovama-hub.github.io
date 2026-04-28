@@ -270,7 +270,7 @@ body {
 }
 
 .about-card__title + .about-card__subtitle {
-  margin-top: 7px;
+  margin-top: 3px;
 }
 
 .about-card__emoji-fix {
