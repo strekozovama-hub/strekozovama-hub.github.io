@@ -64,9 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const menubarTime = document.getElementById('menubar-time');
   let isPanning = false;
   let panStartX, panStartY;
-  let canvasX = -(6000 - window.innerWidth) / 2;
-  let canvasY = -(4000 - (window.innerHeight - 25)) / 2;
-  canvas.style.transform = `translate(${canvasX}px, ${canvasY}px)`;
+  let zoom = 0.75;
+  let canvasX = window.innerWidth / 2 - 3000 * zoom;
+  let canvasY = (window.innerHeight - 25) / 2 - 2000 * zoom;
+  canvas.style.transform = `translate(${canvasX}px, ${canvasY}px) scale(${zoom})`;
   canvas.style.transformOrigin = '0 0';
 
   // -- Position desktop folders relative to viewport --
@@ -74,13 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const folders = document.querySelectorAll('.desktop-folder[data-col], .tools-widget[data-col]');
     if (!folders.length) return;
     const colGap = 140, rowGap = 160;
-    // About card top in canvas coords
-    const aboutTopCanvas = (4000 - (window.innerHeight - 25)) / 2 + 25 + 8 + 8;
+    const aboutTopCanvas = (41 - canvasY) / zoom;
     let maxCol = 0;
     folders.forEach(f => { maxCol = Math.max(maxCol, +f.dataset.col); });
     const folderWidth = 120;
-    const statusRight = menubarTime ? menubarTime.getBoundingClientRect().right : (window.innerWidth - 12);
-    const baseX = (statusRight - canvasX) - ((maxCol * colGap) + folderWidth);
+    const baseX = (window.innerWidth - 24 - canvasX) / zoom - ((maxCol * colGap) + folderWidth);
     folders.forEach(f => {
       const col = +f.dataset.col;
       const row = +f.dataset.row;
@@ -88,6 +87,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const extraOffset = f.id === 'folder-artist' ? 8 : 0;
       f.style.top = (aboutTopCanvas - 32 + row * rowGap + extraOffset) + 'px';
     });
+
+    const card = document.getElementById('card-chart-reviewer');
+    if (card && !card.dataset.userMoved) {
+      card.style.left = (window.innerWidth / 2 - canvasX) / zoom - 140 + 'px';
+      card.style.top = (aboutTopCanvas - 32) + 'px';
+    }
+
+    const card2 = document.getElementById('card-chart-generation');
+    if (card && card2 && !card2.dataset.userMoved) {
+      card2.style.left = (parseFloat(card.style.left) + 224) + 'px';
+      card2.style.top = (parseFloat(card.style.top) + 8) + 'px';
+    }
   }
 
   positionFolders();
@@ -121,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -- Zoom (Ctrl/Cmd+scroll or pinch) --
-  let zoom = 1;
   const MIN_ZOOM = 0.15;
   const MAX_ZOOM = 3;
 
@@ -480,6 +490,95 @@ document.addEventListener('DOMContentLoaded', () => {
       bubble.classList.remove('is-visible');
       setTimeout(() => bubble.remove(), 300);
     }, 4000);
+  }
+
+  // -- Project Card drag + click --
+  const projectCard = document.getElementById('card-chart-reviewer');
+  if (projectCard) {
+    let cardDragging = false;
+    let cardMoved = false;
+    let cardStartX, cardStartY, cardOrigX, cardOrigY;
+
+    projectCard.addEventListener('mousedown', (e) => {
+      cardDragging = true;
+      cardMoved = false;
+      cardStartX = e.clientX; cardStartY = e.clientY;
+      cardOrigX = parseInt(projectCard.style.left) || 0;
+      cardOrigY = parseInt(projectCard.style.top) || 0;
+      projectCard.style.zIndex = 60;
+      selectElement(projectCard);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!cardDragging) return;
+      const dx = Math.abs(e.clientX - cardStartX);
+      const dy = Math.abs(e.clientY - cardStartY);
+      if (dx > 3 || dy > 3) cardMoved = true;
+      projectCard.style.left = cardOrigX + (e.clientX - cardStartX) / zoom + 'px';
+      projectCard.style.top = cardOrigY + (e.clientY - cardStartY) / zoom + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (cardDragging) {
+        cardDragging = false;
+        projectCard.style.zIndex = 50;
+        const newX = parseInt(projectCard.style.left) || 0;
+        const newY = parseInt(projectCard.style.top) || 0;
+        if (newX !== cardOrigX || newY !== cardOrigY) {
+          pushUndo({ type: 'move', element: projectCard, oldX: cardOrigX, oldY: cardOrigY });
+          projectCard.dataset.userMoved = '1';
+        }
+      }
+    });
+
+    projectCard.addEventListener('click', () => {
+      if (cardMoved) return;
+      window.location.href = 'Cases/medvidi.html';
+    });
+  }
+
+  // -- Project Card 2 drag (Coming Soon) --
+  const projectCard2 = document.getElementById('card-chart-generation');
+  if (projectCard2) {
+    let card2Dragging = false;
+    let card2Moved = false;
+    let card2StartX, card2StartY, card2OrigX, card2OrigY;
+
+    projectCard2.addEventListener('mousedown', (e) => {
+      card2Dragging = true;
+      card2Moved = false;
+      card2StartX = e.clientX; card2StartY = e.clientY;
+      card2OrigX = parseInt(projectCard2.style.left) || 0;
+      card2OrigY = parseInt(projectCard2.style.top) || 0;
+      projectCard2.style.zIndex = 60;
+      selectElement(projectCard2);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!card2Dragging) return;
+      const dx = Math.abs(e.clientX - card2StartX);
+      const dy = Math.abs(e.clientY - card2StartY);
+      if (dx > 3 || dy > 3) card2Moved = true;
+      projectCard2.style.left = card2OrigX + (e.clientX - card2StartX) / zoom + 'px';
+      projectCard2.style.top = card2OrigY + (e.clientY - card2StartY) / zoom + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (card2Dragging) {
+        card2Dragging = false;
+        projectCard2.style.zIndex = 50;
+        const newX = parseInt(projectCard2.style.left) || 0;
+        const newY = parseInt(projectCard2.style.top) || 0;
+        if (newX !== card2OrigX || newY !== card2OrigY) {
+          pushUndo({ type: 'move', element: projectCard2, oldX: card2OrigX, oldY: card2OrigY });
+          projectCard2.dataset.userMoved = '1';
+        }
+      }
+    });
   }
 
   // -- Spotify widget drag --
