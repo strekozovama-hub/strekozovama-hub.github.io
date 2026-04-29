@@ -135,6 +135,26 @@
         </div>
       </div>
       <div class="menubar__right">
+        <!-- Spotify trigger -->
+        <div class="spotify-trigger" id="spotify-trigger" aria-label="Now playing">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="9" fill="#E040FB"/>
+            <polygon points="7,5.5 7,12.5 13,9" fill="#1a1a1a"/>
+          </svg>
+          <!-- Spotify dropdown -->
+          <div class="spotify-dropdown" id="spotify-dropdown">
+            <iframe
+              src="https://open.spotify.com/embed/playlist/1XtLuUHkvGDic6UJt70vt6?utm_source=generator&theme=0&locale=en"
+              width="340"
+              height="80"
+              frameBorder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              style="border-radius: 8px; display: block;"
+            ></iframe>
+          </div>
+        </div>
         <span class="menubar__item" id="menubar-time"></span>
       </div>
     </div>

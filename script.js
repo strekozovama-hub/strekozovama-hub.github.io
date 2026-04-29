@@ -682,6 +682,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -- Spotify widget drag --
+  // -- Spotify menubar trigger --
+  const spotifyTrigger = document.getElementById('spotify-trigger');
+  const spotifyDropdown = document.getElementById('spotify-dropdown');
+  if (spotifyTrigger && spotifyDropdown) {
+    spotifyTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      spotifyDropdown.classList.toggle('is-open');
+    });
+    document.addEventListener('click', (e) => {
+      if (!spotifyTrigger.contains(e.target)) {
+        spotifyDropdown.classList.remove('is-open');
+      }
+    });
+  }
+
   const spotifyWidget = document.getElementById('spotify-widget');
   // -- Info Panel tab switching --
   document.querySelectorAll('.info-panel__tab[data-tab]').forEach(tab => {
