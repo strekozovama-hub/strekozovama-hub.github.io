@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const timeEl = document.getElementById('menubar-time');
   function updateTime() {
     const now = new Date();
-    const time = now.toLocaleTimeString('en-US', {
+    const time = now.toLocaleTimeString('en-GB', {
       timeZone: 'Europe/Lisbon',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      hour12: false
     });
     timeEl.textContent = `Portugal, Porto time ${time}`;
   }
@@ -64,40 +65,64 @@ document.addEventListener('DOMContentLoaded', () => {
   const menubarTime = document.getElementById('menubar-time');
   let isPanning = false;
   let panStartX, panStartY;
-  let zoom = 0.75;
+  let zoom = 0.7;
   let canvasX = window.innerWidth / 2 - 3000 * zoom;
-  let canvasY = (window.innerHeight - 25) / 2 - 2000 * zoom;
+  let canvasY = desktopArea.clientHeight / 2 - 2000 * zoom;
   canvas.style.transform = `translate(${canvasX}px, ${canvasY}px) scale(${zoom})`;
   canvas.style.transformOrigin = '0 0';
 
   // -- Position desktop folders relative to viewport --
   function positionFolders() {
-    const folders = document.querySelectorAll('.desktop-folder[data-col], .tools-widget[data-col]');
+    const allFolders = document.querySelectorAll('.desktop-folder[data-col], .tools-widget[data-col]');
+    const bottomRightIds = ['folder-artist', 'dock-trash'];
+    const folders = Array.from(allFolders).filter(f => !bottomRightIds.includes(f.id));
     if (!folders.length) return;
-    const colGap = 140, rowGap = 160;
-    const aboutTopCanvas = (41 - canvasY) / zoom;
-    let maxCol = 0;
-    folders.forEach(f => { maxCol = Math.max(maxCol, +f.dataset.col); });
+    const rowGap = 120;
     const folderWidth = 120;
-    const baseX = (window.innerWidth - 24 - canvasX) / zoom - ((maxCol * colGap) + folderWidth);
+    const cardTopCanvas = (41 - canvasY) / zoom;
+    // Flush with menubar bottom (desktop__area starts at y=25 in viewport)
+    const folderTopCanvas = (4 - canvasY) / zoom;
+    // Right-align to the right edge of the menubar time element
+    const colRight = (window.innerWidth - 12 - canvasX) / zoom;
     folders.forEach(f => {
-      const col = +f.dataset.col;
       const row = +f.dataset.row;
-      f.style.left = (baseX + col * colGap) + 'px';
-      const extraOffset = f.id === 'folder-artist' ? 8 : 0;
-      f.style.top = (aboutTopCanvas - 32 + row * rowGap + extraOffset) + 'px';
+      f.style.left = (colRight - folderWidth) + 'px';
+      f.style.top = (folderTopCanvas + row * rowGap) + 'px';
     });
+
+    // Below sidebar: I'm an artist + Other (trash)
+    const aboutCard = document.getElementById('about-card');
+    const aboutBottom = aboutCard ? aboutCard.getBoundingClientRect().bottom : 29;
+    const sidebarLeft = 12; // sidebar left: 12px viewport
+    const belowSidebarY = (aboutBottom + 16 - 25 - canvasY) / zoom;
+    const sidebarLeftCanvas = (sidebarLeft - canvasX) / zoom;
+    const artist = document.getElementById('folder-artist');
+    if (artist && !artist.dataset.userMoved) {
+      artist.style.left = sidebarLeftCanvas + 'px';
+      artist.style.top = belowSidebarY + 'px';
+    }
+    const trash = document.getElementById('dock-trash');
+    if (trash && !trash.dataset.userMoved) {
+      trash.style.left = (sidebarLeftCanvas + folderWidth + 20) + 'px';
+      trash.style.top = belowSidebarY + 'px';
+    }
 
     const card = document.getElementById('card-chart-reviewer');
     if (card && !card.dataset.userMoved) {
-      card.style.left = (window.innerWidth / 2 - canvasX) / zoom - 140 + 'px';
-      card.style.top = (aboutTopCanvas - 32) + 'px';
+      card.style.left = (window.innerWidth / 2 - 40 - canvasX) / zoom - 276 + 'px';
+      card.style.top = (cardTopCanvas - 32) + 'px';
     }
 
     const card2 = document.getElementById('card-chart-generation');
     if (card && card2 && !card2.dataset.userMoved) {
-      card2.style.left = (parseFloat(card.style.left) + 224) + 'px';
+      card2.style.left = (parseFloat(card.style.left) + 166) + 'px';
       card2.style.top = (parseFloat(card.style.top) + 8) + 'px';
+    }
+
+    const card3 = document.getElementById('card-tbank');
+    if (card && card3 && !card3.dataset.userMoved) {
+      card3.style.left = parseFloat(card.style.left) + 'px';
+      card3.style.top = (parseFloat(card.style.top) + 550) + 'px';
     }
   }
 
@@ -539,6 +564,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // -- Project Card 3 drag + click (TBank) --
+  const projectCard3 = document.getElementById('card-tbank');
+  if (projectCard3) {
+    let card3Dragging = false, card3Moved = false;
+    let card3StartX, card3StartY, card3OrigX, card3OrigY;
+
+    projectCard3.addEventListener('mousedown', (e) => {
+      card3Dragging = true;
+      card3Moved = false;
+      card3StartX = e.clientX; card3StartY = e.clientY;
+      card3OrigX = parseInt(projectCard3.style.left) || 0;
+      card3OrigY = parseInt(projectCard3.style.top) || 0;
+      projectCard3.style.zIndex = 55;
+      selectElement(projectCard3);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!card3Dragging) return;
+      const dx = Math.abs(e.clientX - card3StartX);
+      const dy = Math.abs(e.clientY - card3StartY);
+      if (dx > 3 || dy > 3) card3Moved = true;
+      projectCard3.style.left = card3OrigX + (e.clientX - card3StartX) / zoom + 'px';
+      projectCard3.style.top = card3OrigY + (e.clientY - card3StartY) / zoom + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (card3Dragging) {
+        card3Dragging = false;
+        projectCard3.style.zIndex = 40;
+        const newX = parseInt(projectCard3.style.left) || 0;
+        const newY = parseInt(projectCard3.style.top) || 0;
+        if (newX !== card3OrigX || newY !== card3OrigY) {
+          pushUndo({ type: 'move', element: projectCard3, oldX: card3OrigX, oldY: card3OrigY });
+          projectCard3.dataset.userMoved = '1';
+        }
+      }
+    });
+
+    projectCard3.addEventListener('click', () => {
+      if (card3Moved) return;
+      window.open('https://marinastrekozova.notion.site/Arrestments-case-13b439eac0cc80ce8f4cc3816e1e66d1?source=copy_link', '_blank');
+    });
+  }
+
   // -- Project Card 2 drag (Coming Soon) --
   const projectCard2 = document.getElementById('card-chart-generation');
   if (projectCard2) {
@@ -567,22 +638,66 @@ document.addEventListener('DOMContentLoaded', () => {
       projectCard2.style.top = card2OrigY + (e.clientY - card2StartY) / zoom + 'px';
     });
 
-    document.addEventListener('mouseup', () => {
+    document.addEventListener('mouseup', (e) => {
       if (card2Dragging) {
         card2Dragging = false;
-        projectCard2.style.zIndex = 50;
+        projectCard2.style.zIndex = 45;
         const newX = parseInt(projectCard2.style.left) || 0;
         const newY = parseInt(projectCard2.style.top) || 0;
         if (newX !== card2OrigX || newY !== card2OrigY) {
           pushUndo({ type: 'move', element: projectCard2, oldX: card2OrigX, oldY: card2OrigY });
           projectCard2.dataset.userMoved = '1';
+        } else if (!card2Moved) {
+          showComingSoonToast(e);
         }
       }
     });
   }
 
+  function showComingSoonToast(e) {
+    const existing = document.getElementById('coming-soon-toast');
+    if (existing) existing.remove();
+    const toast = document.createElement('div');
+    toast.id = 'coming-soon-toast';
+    toast.textContent = 'Coming soon';
+    toast.style.cssText = `
+      position: fixed;
+      left: ${e.clientX}px;
+      top: ${e.clientY - 40}px;
+      transform: translateX(-50%);
+      background: #2c2c2c;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => { toast.style.opacity = '0'; }, 1200);
+    setTimeout(() => { toast.remove(); }, 1500);
+  }
+
   // -- Spotify widget drag --
   const spotifyWidget = document.getElementById('spotify-widget');
+  // -- Info Panel tab switching --
+  document.querySelectorAll('.info-panel__tab[data-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetPane = tab.dataset.tab;
+      const pane = document.querySelector(`.info-panel__pane[data-pane="${targetPane}"]`);
+      const isOpen = pane.classList.contains('is-active');
+      document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
+      document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+      if (!isOpen) {
+        tab.classList.add('is-active');
+        pane.classList.add('is-active');
+      }
+    });
+  });
+
   if (spotifyWidget) {
     let spReady = false, spDrag = false, spStartX, spStartY, spOrigX, spOrigY;
     const spOverlay = document.createElement('div');
