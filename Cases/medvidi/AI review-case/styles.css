@@ -1310,7 +1310,16 @@ p + p { margin-top: 16px; }
   }
 
   .nav-contact {
-    display: none;
+    position: fixed;
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    z-index: 120;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .two-col, .three-col, .decision-grid, .impact-strip, .visual-row,
