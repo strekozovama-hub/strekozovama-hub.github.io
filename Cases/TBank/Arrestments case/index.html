@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrestments & Debt Collection Transparency — TBank Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,900;1,14..32,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="back-nav" id="back-nav">
+  <div class="container">
+    <a href="javascript:history.length > 1 ? history.back() : window.location.href='../../../index.html'" class="nav-back" aria-label="Go back">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    </a>
+    <ul class="nav-anchors">
+      <li><a href="#context">Context</a></li>
+      <li><a href="#challenge">Challenge</a></li>
+      <li><a href="#decisions">Decisions</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+    <a href="mailto:strekozova.ma@gmail.com" class="nav-contact">
+      Contact me
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4.10667 11.9289L3.33334 11.1556L10.0445 4.44446H3.92889V3.33334H11.9289V11.3333H10.8178V5.21779L4.10667 11.9289Z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+<!-- Floating Contact button (mobile) -->
+<a href="mailto:strekozova.ma@gmail.com" class="contact-float" aria-label="Contact me">
+  Contact me
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M4.10667 11.9289L3.33334 11.1556L10.0445 4.44446H3.92889V3.33334H11.9289V11.3333H10.8178V5.21779L4.10667 11.9289Z" fill="currentColor"/>
+  </svg>
+</a>
+
+<main>
+
+  <!-- ══════════════ HERO / CONTEXT ══════════════ -->
+  <section class="hero" id="context">
+    <div class="container">
+
+      <div class="hero-meta-row">
+        <span class="hero-tag">product: TBank</span>
+        <span class="hero-tag">segment: B2C · FinTech</span>
+        <span class="hero-tag">platform: iOS · Android</span>
+        <span class="hero-tag">2022 — 2024</span>
+      </div>
+
+      <div class="hero-title-row">
+        <h1>Arrestments <span class="dim">&amp;<br>Debt Collection<br>Transparency</span></h1>
+        <p class="hero-subtitle">
+          Turning a <em>stressful</em> legal-banking scenario into a clear self-service experience that helps clients understand what happened, what money was affected, and what they can do next.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-image-bg">
+        <video
+          class="hero-video"
+          src="Hero animation.mov"
+          autoplay
+          loop
+          muted
+          playsinline
+          aria-label="Arrestments feature — product animation"
+        ></video>
+      </div>
+    </div>
+
+    <!-- Key Achievements -->
+    <div class="container">
+      <div class="achievements-block">
+        <p class="achievements-label">Key Achievements</p>
+        <div class="achievements-grid">
+          <div class="achievement-tile">
+            <p class="achievement-num">−23.8%</p>
+            <p class="achievement-desc"><span>Support inquiries, first-time collections</span> <em>(Segment A)</em></p>
+          </div>
+          <div class="achievement-tile">
+            <p class="achievement-num">−18.5%</p>
+            <p class="achievement-desc"><span>Support inquiries, repeat collections </span><em>(Segment B)</em></p>
+          </div>
+          <div class="achievement-tile">
+            <p class="achievement-num">−31%</p>
+            <p class="achievement-desc">Trigger-based inquiries after arrest notifications</p>
+          </div>
+          <div class="achievement-tile">
+            <p class="achievement-num">−21%</p>
+            <p class="achievement-desc">Back-office requests in the test group</p>
+          </div>
+          <div class="achievement-tile">
+            <p class="achievement-num">~20m ₽</p>
+            <p class="achievement-desc">Annual savings from reduced support volume</p>
+          </div>
+          <div class="achievement-tile">
+            <p class="achievement-num">7%</p>
+            <p class="achievement-desc">Inquiries fully resolved by chatbot with new intents</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context block -->
+    <div class="container">
+      <div class="context-block">
+        <p class="context-label"><span class="context-label-num">(01) </span>Context</p>
+        <div class="context-row">
+          <h2 class="context-heading">
+            A&nbsp;"black&nbsp;box"<br>
+            <span class="dim">at&nbsp;the</span> <em class="serif-em">worst</em><br>
+            <span class="dim">possible&nbsp;moment</span>
+          </h2>
+          <div class="context-copy">
+            <p>When users fall behind on taxes, traffic fines, utilities, or alimony, bailiffs can issue enforcement orders to freeze bank accounts — often without any prior notice. At T-Bank, with <strong>48M customers</strong>, this is a high-frequency, high-stakes event.</p>
+            <p>The experience was a dead end. Customers would discover the freeze through a failed transaction at checkout, a sudden zero balance, or a cryptic line in their history. There was <strong class="bright">no clear path to resolution</strong> — only confusion, panic, and a call to support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="goal-section">
+        <span class="goal-label">Goal</span>
+        <p class="goal-text">
+          Make debt arrests fully transparent — give every user <em class="goal-em">instant clarity</em><br>
+          on what happened, why, and the exact steps to resolve it.
+        </p>
+      </div>
+    </div>
+
+    <!-- Solution Visual -->
+    <div class="solution-visual">
+      <div class="solution-inner">
+        <img class="solution-bg" src="screens/bg.svg" aria-hidden="true">
+        <div class="solution-content">
+          <span class="solution-badge">Final flows</span>
+
+          <div class="solution-group">
+            <p class="solution-group-label">The user faced a funds seizure for the first time</p>
+            <div class="solution-row">
+              <img class="solution-screen" src="screens/screen-01.png" alt="Arrest notification">
+              <img class="solution-screen" src="screens/screen-02.png" alt="Collection details">
+              <img class="solution-screen" src="screens/screen-03.png" alt="Main page with collection">
+            </div>
+          </div>
+
+          <div class="solution-group">
+            <p class="solution-group-label">Enforcement collection imposed and funds debited</p>
+            <div class="solution-row">
+              <img class="solution-screen" src="screens/screen-04.png" alt="Collections screen">
+              <img class="solution-screen" src="screens/screen-05.png" alt="Transaction history">
+              <img class="solution-screen" src="screens/screen-06.png" alt="Arrest notification">
+            </div>
+          </div>
+
+          <div class="solution-group">
+            <p class="solution-group-label">Details</p>
+            <div class="solution-row">
+              <img class="solution-screen" src="screens/screen-07.png" alt="FBS resolution details">
+              <img class="solution-screen" src="screens/screen-08.png" alt="Collection details expanded">
+              <img class="solution-screen" src="screens/screen-09.png" alt="Recipient details">
+            </div>
+            <div class="solution-row">
+              <img class="solution-screen" src="screens/screen-10.png" alt="Collection amount">
+              <img class="solution-screen" src="screens/screen-11.png" alt="Federal Tax Service">
+              <img class="solution-screen" src="screens/screen-12.png" alt="Accounts view">
+            </div>
+          </div>
+
+          <div class="solution-group">
+            <p class="solution-group-label">The enforcement collection has been settled</p>
+            <div class="solution-row">
+              <img class="solution-screen" src="screens/screen-13.png" alt="Collection paid off">
+              <img class="solution-screen" src="screens/screen-14.png" alt="Collection fully paid">
+              <img class="solution-screen" src="screens/screen-15.png" alt="Updated main page">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Role / Actions -->
+    <div class="container">
+      <div class="role-block">
+        <div class="role-block__intro">
+          <p class="role-label">My Role</p>
+          <p class="role-text">I joined as the only designer to transform this <strong>dead end</strong> into a transparent self-service flow. An initial concept existed but was outdated — missing transaction visibility, payment options, and detailed debt information.</p>
+        </div>
+
+        <div class="role-block__actions" aria-label="Actions taken">
+          <p class="role-actions-title">Actions</p>
+          <div class="role-action-item">
+            <p class="role-action-title">Fixed the data flow</p>
+            <p class="role-action-text">In collaboration with the PM and multiple teams to make sure users could actually see their debt details instead of just a blank screen.</p>
+          </div>
+
+          <div class="role-action-divider" aria-hidden="true"></div>
+          <div class="role-action-item">
+            <p class="role-action-title">Simplified legal language</p>
+            <p class="role-action-text">Using guidelines from our compliance team, I translated scary legal terms into clear, human-friendly text to reduce user panic.</p>
+          </div>
+
+          <div class="role-action-divider" aria-hidden="true"></div>
+          <div class="role-action-item">
+            <p class="role-action-title">Built a recovery path</p>
+            <p class="role-action-text">I designed the flow that allowed users to pay off their debts and unfreeze their accounts directly in the app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="peach-block">
+      <div class="container">
+        <div class="profile-block">
+          <div class="profile-block__title">
+            <span>Client profile under </span><em>debt Collection</em>
+          </div>
+
+          <div class="profile-grid">
+            <article class="profile-card">
+              <img class="profile-card__shot" src="screens/Active%20clients.png" alt="Active Clients">
+            </article>
+
+            <article class="profile-card">
+              <img class="profile-card__shot" src="screens/Immediate%20Clients.png" alt="Immediate Payers">
+            </article>
+
+            <article class="profile-card">
+              <img class="profile-card__shot" src="screens/Credit%20Risk%20clients.png" alt="Credit Risk Clients">
+            </article>
+          </div>
+
+          <div class="profile-pain-grid">
+            <div class="profile-pain">
+              <div class="profile-pain__icon" aria-hidden="true">
+                <img src="https://www.figma.com/api/mcp/asset/f63fd08b-5730-45f8-b3ba-71590e0f8b06" alt="">
+              </div>
+              <div class="profile-pain__content">
+                <div class="profile-pain__label">CORE PAIN</div>
+                <div class="profile-pain__text">No visibility into what was taken or what remains accessible</div>
+              </div>
+            </div>
+
+            <div class="profile-pain">
+              <div class="profile-pain__icon" aria-hidden="true">
+                <img src="https://www.figma.com/api/mcp/asset/f63fd08b-5730-45f8-b3ba-71590e0f8b06" alt="">
+              </div>
+              <div class="profile-pain__content">
+                <div class="profile-pain__label">CORE PAIN</div>
+                <div class="profile-pain__text">Could resolve instantly, but the interface made it nearly impossible to find how</div>
+              </div>
+            </div>
+
+            <div class="profile-pain">
+              <div class="profile-pain__icon" aria-hidden="true">
+                <img src="https://www.figma.com/api/mcp/asset/f63fd08b-5730-45f8-b3ba-71590e0f8b06" alt="">
+              </div>
+              <div class="profile-pain__content">
+                <div class="profile-pain__label">CORE PAIN</div>
+                <div class="profile-pain__text">Feared delinquency but had no way to pay loans while accounts were frozen</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-divider" aria-hidden="true"></div>
+
+          <div class="profile-baseline">
+            <div class="profile-baseline__label">Baseline</div>
+            <div class="profile-metrics">
+              <div class="profile-metric profile-metric--w280">
+                <div class="profile-metric__value"><span>~ </span>280<span>k</span></div>
+                <div class="profile-metric__title">Monthly orders</div>
+                <div class="profile-metric__text">142K unique clients affected</div>
+              </div>
+              <div class="profile-metric profile-metric--w376">
+                <div class="profile-metric__value">250<span>k</span></div>
+                <div class="profile-metric__title">Support contacts in the same period</div>
+                <div class="profile-metric__text">Nearly 1 contact per order. Every arrest triggered a call</div>
+              </div>
+              <div class="profile-metric profile-metric--w355">
+                <div class="profile-metric__value">80%</div>
+                <div class="profile-metric__title">Had only one arrest</div>
+                <div class="profile-metric__text">20% were dealing with multiple simultaneous orders</div>
+              </div>
+              <div class="profile-metric profile-metric--w280">
+                <div class="profile-metric__value">4%</div>
+                <div class="profile-metric__title">Resolved within a month</div>
+                <div class="profile-metric__text">Most took longer than 10 days, a prolonged, stressful experience</div>
+              </div>
+              <div class="profile-metric profile-metric--w385">
+                <div class="profile-metric__value"><span>~ </span>50%</div>
+                <div class="profile-metric__title">Had no funds at the time of arrest</div>
+                <div class="profile-metric__text">Likely inactive accounts, yet still generating confusion and support load when the order arrived</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  const nav = document.getElementById('back-nav');
+  const anchors = document.querySelectorAll('.nav-anchors a');
+  const sections = [...anchors].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = '#' + s.id; });
+    anchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));
+  }, { passive: true });
+
+  const screenObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        screenObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.solution-screen').forEach(el => screenObserver.observe(el));
+</script>
+
+</body>
+</html>
