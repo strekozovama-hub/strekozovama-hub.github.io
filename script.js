@@ -606,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     projectCard3.addEventListener('click', () => {
       if (card3Moved) return;
-      window.location.href = 'Cases/TBank/Arrestments case/index.html';
+      window.location.href = 'Cases/TBank/Arrestments%20case/index.html';
     });
   }
 
