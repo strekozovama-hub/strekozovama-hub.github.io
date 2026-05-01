@@ -606,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     projectCard3.addEventListener('click', () => {
       if (card3Moved) return;
-      window.open('https://marinastrekozova.notion.site/Arrestments-case-13b439eac0cc80ce8f4cc3816e1e66d1?source=copy_link', '_blank');
+      window.location.href = 'Cases/TBank/Arrestments%20case/index.html';
     });
   }
 
