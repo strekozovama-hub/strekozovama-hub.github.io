@@ -112,10 +112,10 @@
       </div>
     </div>
 
-    <!-- Context block -->
+    <!-- Challenge block -->
     <div class="container">
-      <div class="context-block">
-        <p class="context-label"><span class="context-label-num">(01) </span>Context</p>
+      <div class="context-block" id="challenge">
+        <p class="context-label"><span class="context-label-num">(01) </span><span class="context-label-text">Challenge</span></p>
         <div class="context-row">
           <h2 class="context-heading">
             A&nbsp;"black&nbsp;box" <span class="dim">at&nbsp;the</span> <em class="serif-em">worst</em> <span class="dim">possible&nbsp;moment</span>
@@ -240,25 +240,25 @@
             </article>
           </div>
 
-          <div class="profile-pain-grid">
-            <div class="profile-pain">
-              <div class="profile-pain__content">
-                <div class="profile-pain__label">CORE PAIN</div>
-                <div class="profile-pain__text">No visibility into what was taken or what remains accessible</div>
+          <div class="profile-pain-block">
+            <div class="profile-pain-label">CORE PAIN</div>
+            <div class="profile-pain-grid">
+              <div class="profile-pain">
+                <div class="profile-pain__content">
+                  <div class="profile-pain__text">No visibility into what was taken or what remains accessible</div>
+                </div>
               </div>
-            </div>
 
-            <div class="profile-pain">
-              <div class="profile-pain__content">
-                <div class="profile-pain__label">CORE PAIN</div>
-                <div class="profile-pain__text">Could resolve instantly, but the interface made it nearly impossible to find how</div>
+              <div class="profile-pain">
+                <div class="profile-pain__content">
+                  <div class="profile-pain__text">Could resolve instantly, but the interface made it nearly impossible to find how</div>
+                </div>
               </div>
-            </div>
 
-            <div class="profile-pain">
-              <div class="profile-pain__content">
-                <div class="profile-pain__label">CORE PAIN</div>
-                <div class="profile-pain__text">Feared delinquency but had no way to pay loans while accounts were frozen</div>
+              <div class="profile-pain">
+                <div class="profile-pain__content">
+                  <div class="profile-pain__text">Feared delinquency but had no way to pay loans while accounts were frozen</div>
+                </div>
               </div>
             </div>
           </div>
@@ -295,9 +295,83 @@
               </div>
             </div>
           </div>
+
+          <div class="profile-history-block">
+            <div class="profile-history-separator" aria-hidden="true">
+              <div class="profile-history-separator__spacer"></div>
+              <div class="profile-history-separator__line"></div>
+            </div>
+
+            <div class="profile-history-layout">
+              <p class="profile-history-copy">
+                <span class="profile-history-copy__muted">How clients </span><span class="profile-history-copy__em">found out </span><span class="profile-history-copy__muted">about the existing </span><span class="profile-history-copy__em">enforcement collection </span><span class="profile-history-copy__em">before:</span>
+              </p>
+
+              <div class="profile-history-cards">
+                <article class="profile-history-card">
+                  <div class="profile-history-card__icon">
+                    <img src="https://www.figma.com/api/mcp/asset/c0fdb27a-8015-43c1-8d87-2d4a919d7530" alt="">
+                  </div>
+                  <div class="profile-history-card__body">
+                    <div class="profile-history-card__title">Failed payment</div>
+                    <div class="profile-history-card__text">The account is at zero or negative balance with no explanation</div>
+                  </div>
+                </article>
+
+                <article class="profile-history-card">
+                  <div class="profile-history-card__icon profile-history-card__icon--wide">
+                    <img src="https://www.figma.com/api/mcp/asset/7a49d3dd-5f4f-46fa-98cb-ca82395aaf14" alt="">
+                  </div>
+                  <div class="profile-history-card__body">
+                    <div class="profile-history-card__title">In the mobile app</div>
+                    <div class="profile-history-card__text">Negative balance or an unexplained write-off in transaction history, no next step</div>
+                  </div>
+                </article>
+
+                <article class="profile-history-card">
+                  <div class="profile-history-card__icon profile-history-card__icon--sms">
+                    <div class="profile-history-card__icon-asset">
+                      <img src="https://www.figma.com/api/mcp/asset/18c3a42e-8010-4a8d-810c-8790d6189154" alt="">
+                    </div>
+                  </div>
+                  <div class="profile-history-card__body">
+                    <div class="profile-history-card__title">SMS from bank</div>
+                    <div class="profile-history-card__text">When the collection process starts Without enough context how to act</div>
+                  </div>
+                </article>
+
+                <article class="profile-history-card">
+                  <div class="profile-history-card__icon profile-history-card__icon--logo">
+                    <img src="https://www.figma.com/api/mcp/asset/52247f91-88ce-41ff-b598-29a102bde9ea" alt="">
+                  </div>
+                  <div class="profile-history-card__body">
+                    <div class="profile-history-card__title">GosUslugi portal</div>
+                    <div class="profile-history-card__text">The only proactive signal, outside the product entirely</div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <section class="process-section" id="process" aria-labelledby="process-section-title">
+      <div class="container process-section__content">
+        <p class="process-section__label">
+          <span>(2) </span><span>Design and Development Process</span>
+        </p>
+        <h2 class="process-section__title" id="process-section-title">
+          <span>Data Collection </span><span class="process-section__title-dim">&amp;</span><span> Approval</span>
+        </h2>
+        <p class="process-section__copy">
+          I worked with multiple teams to gather real-time collection data and consulted compliance for accurate legal guidance. This provided the foundation for building an interface that would deliver the needed <strong>clarity and transparency</strong> for customers.
+        </p>
+      </div>
+      <div class="process-section__visual" aria-hidden="true">
+        <img class="process-section__image" src="https://www.figma.com/api/mcp/asset/c77a9ef4-f299-488b-a5cc-a6584c0837a4" alt="">
+      </div>
+    </section>
 
   </section>
 
