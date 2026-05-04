@@ -15,7 +15,7 @@
 <!-- ── Navigation ── -->
 <nav class="back-nav" id="back-nav">
   <div class="container">
-    <a href="javascript:history.length > 1 ? history.back() : window.location.href='../../../index.html'" class="nav-back" aria-label="Go back">
+    <a href="../../../index.html" class="nav-back" aria-label="Go back">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
     </a>
     <ul class="nav-anchors">
@@ -23,7 +23,7 @@
       <li><a href="#challenge">Challenge</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#solution">Solution</a></li>
-      <li><a href="#impact">Impact</a></li>
+      <li><a href="#reflection">Reflection</a></li>
     </ul>
     <a href="mailto:strekozova.ma@gmail.com" class="nav-contact">
       Contact me
@@ -382,7 +382,7 @@
           <span>(2) </span><span>Design and Development Process</span>
         </p>
         <h2 class="process-section__title" id="process-section-title">
-          <span>Data Collection </span><span class="process-section__title-dim">and</span><span> Approval</span>
+          <span>Data Collection </span><span class="process-section__title-dim">&amp;</span><span> Approval</span>
         </h2>
         <p class="process-section__copy">
           I worked with multiple teams to gather real-time collection data and consulted compliance for accurate legal guidance. This provided the foundation for building an interface that would deliver the needed <strong>clarity and transparency</strong> for customers.
@@ -493,6 +493,73 @@
               </div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="creating-section" id="creating-testing" aria-labelledby="creating-section-title">
+      <div class="container creating-section__content">
+        <div class="creating-section__rule" aria-hidden="true"></div>
+        <h2 class="creating-section__title" id="creating-section-title">
+          Creating <span>&amp;</span> Testing Interfaces
+        </h2>
+        <p class="creating-section__copy">
+          We developed several user flow options and tested them in two rounds — first with support staff, then with real users. The order mattered: agents knew the questions cold. Their patterns became the product.
+        </p>
+
+        <div class="testing-cards" aria-label="Creating and testing steps">
+          <article class="testing-card">
+            <span class="testing-card__icon" aria-hidden="true"></span>
+            <div class="testing-card__body">
+              <h3 class="testing-card__title">Flow exploration</h3>
+              <p class="testing-card__text">Multiple flow options were developed for key scenarios — arrest discovery, status overview, payment path, loan handling under seizure. Each option made different tradeoffs between legal completeness and cognitive load.</p>
+            </div>
+          </article>
+
+          <article class="testing-card testing-card--feature">
+            <span class="testing-card__icon" aria-hidden="true"></span>
+            <div class="testing-card__body">
+              <h3 class="testing-card__title">Testing with support agents first</h3>
+              <p class="testing-card__text">Before exposing flows to real users, we ran sessions with support staff. They had handled thousands of arrest-related calls and knew exactly where panic peaked. Their answers shaped the FAQ section directly.</p>
+
+              <div class="support-insight">
+                <div class="support-insight__quote">
+                  <img class="support-insight__icon" src="screens/testing-lightbulb.png" alt="" aria-hidden="true">
+                  <p>By testing the concept with support agents, we uncovered the <strong>most common</strong> customer questions and pain points. These insights became the foundation for the new FAQ section.</p>
+                </div>
+                <div class="support-insight__images" aria-hidden="true">
+                  <div class="support-insight__image support-insight__image--faq">
+                    <img src="screens/testing-faq-card.png" alt="">
+                  </div>
+                  <div class="support-insight__image support-insight__image--article">
+                    <img src="screens/testing-article-card.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="testing-card">
+            <span class="testing-card__icon" aria-hidden="true"></span>
+            <div class="testing-card__body">
+              <h3 class="testing-card__title">Testing with actual users</h3>
+              <p class="testing-card__text">Flows were then tested across both segments. First-time users needed more explanation and reassurance. Repeat users needed faster access to action. The iteration scope was built from these findings — not assumptions.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reflection-section" id="reflection" aria-labelledby="reflection-section-title">
+      <div class="container reflection-section__content">
+        <p class="reflection-section__label">
+          <span>(05) </span><span>Reflection</span>
+        </p>
+        <h2 class="reflection-section__title" id="reflection-section-title">
+          In <span class="reflection-section__title-emphasis">sensitive</span> financial scenarios, <span class="reflection-section__title-emphasis">clarity</span> — is a trust mechanism.
+        </h2>
+        <div class="reflection-section__copy">
+          <p>The strongest design decisions were not about adding more information, but about structuring it in the right order: what happened, why it happened, what money was affected, what the client can do now, and then... what happens next.</p>
         </div>
       </div>
     </section>
