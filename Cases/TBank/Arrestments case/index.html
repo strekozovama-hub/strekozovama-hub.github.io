@@ -503,11 +503,14 @@
 
 <script>
   const nav = document.getElementById('back-nav');
+  const contactFloat = document.querySelector('.contact-float');
   const anchors = document.querySelectorAll('.nav-anchors a');
   const sections = [...anchors].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const isScrolled = window.scrollY > 40;
+    nav.classList.toggle('scrolled', isScrolled);
+    contactFloat.classList.toggle('visible', isScrolled);
     let current = '';
     sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = '#' + s.id; });
     anchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));

@@ -38,6 +38,13 @@ a { color: inherit; text-decoration: none; }
   background: rgba(44, 44, 44, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.back-nav.scrolled {
+  background: #2c2c2c;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .back-nav .container {
@@ -101,9 +108,15 @@ a { color: inherit; text-decoration: none; }
 .nav-contact:hover { background: #c8c8c8; transform: translateY(-1px); }
 .nav-contact:active { transform: translateY(0); }
 
-/* ── Floating Contact (mobile) ── */
+.back-nav.scrolled .nav-contact {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+/* ── Floating Contact ── */
 .contact-float {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: calc(24px + env(safe-area-inset-bottom));
   right: calc(24px + env(safe-area-inset-right));
@@ -119,7 +132,16 @@ a { color: inherit; text-decoration: none; }
   border-radius: 100px;
   text-decoration: none;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  transition: background-color 0.18s ease, transform 0.18s ease;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.18s ease;
+}
+
+.contact-float.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .contact-float:hover { background: #c8c8c8; transform: translateY(-2px); }
@@ -127,7 +149,11 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 900px) {
   .nav-contact { display: none; }
-  .contact-float { display: flex; }
+  .contact-float {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
 
   .role-block {
     gap: 32px;
