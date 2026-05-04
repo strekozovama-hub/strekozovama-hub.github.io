@@ -190,6 +190,120 @@ a { color: inherit; text-decoration: none; }
   .profile-pain__icon {
     margin-top: 0;
   }
+
+  .discovery-section__content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .discovery-section__copy {
+    width: 100%;
+    flex: 0 0 auto;
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .discovery-section__cards {
+    width: 100%;
+    flex: 0 0 auto;
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .discovery-card {
+    gap: 10px;
+  }
+
+  .discovery-card__icon,
+  .discovery-card__icon img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .discovery-card__icon--gos {
+    width: 22px;
+    height: 24px;
+  }
+
+  .discovery-card__title {
+    font-size: 18px;
+  }
+
+  .discovery-card__text {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .process-section {
+    margin-top: 0;
+    padding: 40px 0 0;
+    background: #2c2c2c;
+  }
+
+  .process-section__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .process-section__label {
+    margin: 0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 34px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #b3b3b3;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+  }
+
+  .process-section__label span:last-child {
+    color: #f3f3f3;
+  }
+
+  .process-section__title {
+    margin: 0;
+    width: 100%;
+    font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    color: #f5f5f5;
+  }
+
+  .process-section__title-dim {
+    color: #757575;
+  }
+
+  .process-section__copy {
+    margin: 0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    color: #f3f3f3;
+  }
+
+  .process-section__copy strong {
+    font-style: italic;
+    font-weight: 700;
+  }
+
+  .process-section__visual {
+    width: calc(100% - 32px);
+    margin: 28px auto 0;
+  }
+
+  .process-section__image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 /* ── Hero ── */
@@ -731,6 +845,228 @@ a { color: inherit; text-decoration: none; }
   font-weight: 400;
   line-height: 24px;
   color: #5a5a5a;
+}
+
+.discovery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+  background: transparent;
+}
+
+.discovery-section__separator {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.discovery-section__separator-spacer {
+  height: 8px;
+}
+
+.discovery-section__separator-line {
+  width: 100%;
+  height: 20px;
+  position: relative;
+}
+
+.discovery-section__separator-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: #b2b2b2;
+  transform: translateY(-50%);
+}
+
+.discovery-section__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 54px;
+  padding-top: 4px;
+}
+
+.discovery-section__copy {
+  width: 332px;
+  flex: 0 0 332px;
+  margin: 0;
+  font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+  color: #303030;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+
+.discovery-section__copy-muted {
+  color: #767676;
+}
+
+.discovery-section__copy-em {
+  font-family: 'New York', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #303030;
+}
+
+.discovery-section__copy-copy-space {
+  display: inline-block;
+  width: 0.25em;
+}
+
+.discovery-section__cards {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+  margin-top: 12px;
+}
+
+.discovery-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.discovery-card__icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+.discovery-card__icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.discovery-card__icon--failed img {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  inset: 2px;
+}
+
+.discovery-card__icon--mobile {
+  overflow: hidden;
+}
+
+.discovery-card__icon--sms img {
+  width: 24px;
+  height: 24px;
+}
+
+.discovery-card__icon--gos {
+  width: 22px;
+  height: 24px;
+}
+
+.discovery-card__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.discovery-card__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 24px;
+  color: #303030;
+}
+
+.discovery-card__text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #5a5a5a;
+}
+
+.discovery-card__text-strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+.process-section {
+  margin-top: 0;
+  padding: 40px 0 0;
+  background: #2c2c2c;
+}
+
+.process-section__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.process-section__label {
+  margin: 0;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 34px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #b3b3b3;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+
+.process-section__label span:last-child {
+  color: #f3f3f3;
+}
+
+.process-section__title {
+  margin: 0;
+  width: 100%;
+  font-family: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.8px;
+  color: #f5f5f5;
+}
+
+.process-section__title-dim {
+  color: #757575;
+}
+
+.process-section__copy {
+  margin: 0;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  color: #f3f3f3;
+}
+
+.process-section__copy strong {
+  font-style: italic;
+  font-weight: 700;
+}
+
+.process-section__visual {
+  width: min(100% - 160px, 1220px);
+  margin: 40px auto 0;
+}
+
+.process-section__image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ── Solution Visual ── */
