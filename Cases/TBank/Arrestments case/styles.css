@@ -675,7 +675,7 @@ a { color: inherit; text-decoration: none; }
 .role-action-divider {
   width: 100%;
   height: 1px;
-  background: rgba(245, 245, 245, 0.35);
+  background: #b3b3b3;
 }
 
 .role-action-item {
@@ -698,7 +698,7 @@ a { color: inherit; text-decoration: none; }
 .role-action-text {
   font-size: 24px;
   font-weight: 400;
-  color: rgba(245, 245, 245, 0.75);
+  color: #b3b3b3;
   line-height: 1.5;
 }
 
@@ -1012,9 +1012,10 @@ a { color: inherit; text-decoration: none; }
 
 .discovery-card__icon {
   position: relative;
-  flex: 0 0 auto;
+  flex: 0 0 24px;
   width: 24px;
   height: 24px;
+  overflow: hidden;
 }
 
 .discovery-card__icon img {
@@ -1025,24 +1026,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .discovery-card__icon--failed img {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  inset: 2px;
+  width: 100%;
+  height: 100%;
+  position: static;
+  inset: unset;
 }
 
-.discovery-card__icon--mobile {
-  overflow: hidden;
-}
-
-.discovery-card__icon--sms img {
-  width: 24px;
-  height: 24px;
-}
-
-.discovery-card__icon--gos {
-  width: 22px;
-  height: 24px;
+.discovery-card__icon--sms img,
+.discovery-card__icon--gos img {
+  width: 100%;
+  height: 100%;
 }
 
 .discovery-card__body {
