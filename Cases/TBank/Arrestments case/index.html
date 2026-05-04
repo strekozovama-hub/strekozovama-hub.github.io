@@ -342,9 +342,9 @@
                   </div>
                 </article>
 
-                <article class="discovery-card">
+              <article class="discovery-card">
                   <div class="discovery-card__icon discovery-card__icon--sms" aria-hidden="true">
-                    <img src="screens/history-sms-bank.png" alt="">
+                    <img src="screens/history-gosuslugi.svg" alt="">
                   </div>
                   <div class="discovery-card__body">
                     <div class="discovery-card__title">SMS from bank</div>
@@ -356,9 +356,9 @@
                   </div>
                 </article>
 
-                <article class="discovery-card">
+              <article class="discovery-card">
                   <div class="discovery-card__icon discovery-card__icon--gos" aria-hidden="true">
-                    <img src="screens/history-gosuslugi.svg" alt="">
+                    <img src="screens/history-sms-bank.png" alt="">
                   </div>
                   <div class="discovery-card__body">
                     <div class="discovery-card__title">On the State Services portal (Gosuslugi):</div>
@@ -388,8 +388,112 @@
           I worked with multiple teams to gather real-time collection data and consulted compliance for accurate legal guidance. This provided the foundation for building an interface that would deliver the needed <strong>clarity and transparency</strong> for customers.
         </p>
       </div>
-      <div class="process-section__visual" aria-hidden="true">
-        <img class="process-section__image" src="screens/process-development.png" alt="">
+    <div class="process-section__visual" aria-hidden="true">
+      <img class="process-section__image" src="screens/process-development.png" alt="">
+    </div>
+    </section>
+
+    <section class="problems-section" aria-labelledby="problems-section-title">
+      <div class="container">
+        <h2 class="problems-section__title" id="problems-section-title">Defining the main problems</h2>
+
+        <div class="problems-grid">
+          <article class="problem-card problem-card--customer">
+            <div class="problem-card__intro">
+              <p class="problem-card__eyebrow">USER PROBLEM</p>
+              <p class="problem-card__description">
+                Customers had no way to understand what was arrested, what was accessible, why it happened, or what to do. Loan arrears rose
+                <span class="problem-card__emphasis">30 - 40%</span>
+                during seizures because users didn't know they could still pay.
+              </p>
+            </div>
+
+            <div class="problem-card__items">
+              <div class="problem-card__divider" aria-hidden="true"></div>
+              <div class="problem-card__item">
+                <span class="problem-card__num">01</span>
+                <span class="problem-card__item-text">No dedicated arrestments screen</span>
+              </div>
+              <div class="problem-card__divider" aria-hidden="true"></div>
+              <div class="problem-card__item">
+                <span class="problem-card__num">02</span>
+                <span class="problem-card__item-text">No transaction visibility for write-offs</span>
+              </div>
+              <div class="problem-card__divider" aria-hidden="true"></div>
+              <div class="problem-card__item">
+                <span class="problem-card__num">03</span>
+                <span class="problem-card__item-text">No explanation of legal context</span>
+              </div>
+              <div class="problem-card__divider" aria-hidden="true"></div>
+              <div class="problem-card__item">
+                <span class="problem-card__num">04</span>
+                <span class="problem-card__item-text">No loan payment path under seizure</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="problem-card problem-card--dark">
+            <div class="problem-card__intro">
+              <p class="problem-card__eyebrow">BUSINESS PROBLEM</p>
+              <p class="problem-card__description">
+                Every enforcement batch triggered a spike in support contacts. Many clients were closing accounts to escape restrictions
+                — a retention problem layered on <span class="problem-card__emphasis problem-card__emphasis--light">top of a support problem</span>.
+              </p>
+            </div>
+
+            <div class="problem-card__items">
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__item problem-card__item--dark">
+                <span class="problem-card__num problem-card__num--light">01</span>
+                <span class="problem-card__item-text problem-card__item-text--light">High support call and back-office volume</span>
+              </div>
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__item problem-card__item--dark">
+                <span class="problem-card__num problem-card__num--light">02</span>
+                <span class="problem-card__item-text problem-card__item-text--light">No chatbot intents for arrest topics</span>
+              </div>
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__item problem-card__item--dark">
+                <span class="problem-card__num problem-card__num--light">03</span>
+                <span class="problem-card__item-text problem-card__item-text--light">Client churn from account closures</span>
+              </div>
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__item problem-card__item--dark">
+                <span class="problem-card__num problem-card__num--light">04</span>
+                <span class="problem-card__item-text problem-card__item-text--light">Overlapping issues: loans + deposits + piggy bank + payment installments</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="problem-card problem-card--dark problem-card--tension">
+            <div class="problem-card__intro">
+              <p class="problem-card__eyebrow">DESIGN TENSION</p>
+              <p class="problem-card__description">
+                Three parties, intersecting flows, legal constraints. The
+                <span class="problem-card__emphasis problem-card__emphasis--light"> interface had to serve all three</span>
+                — without violating law or sacrificing any side's core interest.
+              </p>
+            </div>
+
+            <div class="problem-card__items problem-card__items--tension">
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__subitem">
+                <span class="problem-card__subitem-label">User</span>
+                <p class="problem-card__subitem-text">Must pay the loan to avoid delinquency — but the seized account blocks standard payment paths. Needs a way out that's visible and accessible.</p>
+              </div>
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__subitem">
+                <span class="problem-card__subitem-label">Bank</span>
+                <p class="problem-card__subitem-text">Wants to retain the client and prevent loan default — but cannot redirect seized funds to a loan account before the enforcement order is satisfied.</p>
+              </div>
+              <div class="problem-card__divider problem-card__divider--light" aria-hidden="true"></div>
+              <div class="problem-card__subitem">
+                <span class="problem-card__subitem-label">Law</span>
+                <p class="problem-card__subitem-text">Enforcement order must be settled first. Seized funds cannot flow to another obligation. Every action the interface offers must be legally permissible.</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 

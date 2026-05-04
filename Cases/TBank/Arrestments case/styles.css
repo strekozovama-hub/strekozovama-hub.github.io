@@ -307,6 +307,51 @@ a { color: inherit; text-decoration: none; }
     width: 92.96%;
     height: 100.92%;
   }
+
+  .problems-section {
+    margin-top: 72px;
+  }
+
+  .problems-section__title {
+    font-size: 30px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .problems-grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .problem-card {
+    min-height: auto;
+    gap: 18px;
+    padding: 18px 18px 20px;
+  }
+
+  .problem-card__items {
+    margin-top: 0;
+  }
+
+  .problem-card__description {
+    font-size: 15px;
+  }
+
+  .problem-card__divider {
+    margin: 12px 0;
+  }
+
+  .problem-card__stack {
+    gap: 12px;
+  }
+
+  .problem-card__subitem-text {
+    font-size: 15px;
+  }
+
+  .problem-card--tension .problem-card__divider {
+    margin: 0 0 12px;
+  }
 }
 
 /* ── Hero ── */
@@ -1107,6 +1152,196 @@ a { color: inherit; text-decoration: none; }
   height: 100.92%;
   display: block;
   object-fit: fill;
+}
+
+/* ── Problems ── */
+.problems-section {
+  margin-top: 96px;
+  background: #2c2c2c;
+}
+
+.problems-section__title {
+  margin: 0 0 40px;
+  font-family: 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.8px;
+  color: #f3f3f3;
+}
+
+.problems-grid {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.problem-card {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 20px;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 0;
+  height: auto;
+}
+
+.problem-card--customer {
+  background: #ffdd2d;
+  height: 547px;
+  padding-bottom: 205px;
+}
+
+.problem-card--dark {
+  background: #1a1a17;
+  height: 547px;
+  padding-bottom: 205px;
+}
+
+.problem-card--tension {
+  height: 547px;
+  padding-bottom: 60px;
+}
+
+.problem-card__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.problem-card__eyebrow {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: normal;
+  color: rgba(12, 12, 10, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.problem-card--dark .problem-card__eyebrow {
+  color: #b3b3b3;
+}
+
+.problem-card__description {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #303030;
+}
+
+.problem-card--dark .problem-card__description {
+  color: #b3b3b3;
+}
+
+.problem-card__emphasis {
+  font-family: 'New York', 'New York Extra Large', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.problem-card__emphasis--light {
+  color: #f3f3f3;
+}
+
+.problem-card__items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.problem-card__item {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.problem-card__item--dark {
+  align-items: flex-start;
+}
+
+.problem-card__num {
+  flex: 0 0 auto;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(90, 90, 90, 0.5);
+  min-width: 22px;
+}
+
+.problem-card__num--light {
+  color: rgba(179, 179, 179, 0.6);
+}
+
+.problem-card__item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #5a5a5a;
+}
+
+.problem-card__item-text--light {
+  color: #f3f3f3;
+}
+
+.problem-card__divider {
+  height: 0;
+  position: relative;
+}
+
+.problem-card__divider::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: rgba(90, 90, 90, 0.18);
+}
+
+.problem-card__divider--light {
+  background: transparent;
+}
+
+.problem-card__divider--light::after {
+  background: rgba(243, 243, 243, 0.14);
+}
+
+.problem-card__subitem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.problem-card__subitem-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffdd2d;
+}
+
+.problem-card__subitem-text {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #f3f3f3;
+}
+
+.problem-card--tension .problem-card__items {
+  padding-top: 4px;
 }
 
 /* ── Solution Visual ── */
