@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       minute: '2-digit',
       hour12: false
     });
-    timeEl.textContent = `Portugal, Porto time ${time}`;
+    timeEl.textContent = `Porto, ${time}`;
   }
   updateTime();
   setInterval(updateTime, 30000);
@@ -74,16 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // -- Position desktop folders relative to viewport --
   function positionFolders() {
     const allFolders = document.querySelectorAll('.desktop-folder[data-col], .tools-widget[data-col]');
-    const bottomRightIds = ['folder-artist', 'dock-trash'];
+    const bottomRightIds = ['folder-artist', 'dock-trash', 'folder-vcru'];
     const folders = Array.from(allFolders).filter(f => !bottomRightIds.includes(f.id));
     if (!folders.length) return;
     const rowGap = 120;
     const folderWidth = 120;
-    const cardTopCanvas = (41 - canvasY) / zoom;
-    // Flush with menubar bottom (desktop__area starts at y=25 in viewport)
+    const areaTop = desktopArea.getBoundingClientRect().top;
+    const cardTopCanvas = (16 - canvasY) / zoom;
+    // Align right-side folders near the top of the canvas area.
     const folderTopCanvas = (4 - canvasY) / zoom;
     // Right-align to the right edge of the menubar time element
-    const colRight = (window.innerWidth - 12 - canvasX) / zoom;
+    const colRight = (window.innerWidth - 4 - canvasX) / zoom;
     folders.forEach(f => {
       const row = +f.dataset.row;
       f.style.left = (colRight - folderWidth) + 'px';
@@ -92,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Below sidebar: I'm an artist + Other (trash)
     const aboutCard = document.getElementById('about-card');
-    const aboutBottom = aboutCard ? aboutCard.getBoundingClientRect().bottom : 29;
-    const sidebarLeft = 12; // sidebar left: 12px viewport
-    const belowSidebarY = (aboutBottom + 16 - 25 - canvasY) / zoom;
+    const aboutBottom = aboutCard ? aboutCard.getBoundingClientRect().bottom : 0;
+    const sidebarLeft = 4;
+    const belowSidebarY = (aboutBottom + 16 - areaTop - canvasY) / zoom;
     const sidebarLeftCanvas = (sidebarLeft - canvasX) / zoom;
     const artist = document.getElementById('folder-artist');
     if (artist && !artist.dataset.userMoved) {
@@ -105,6 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (trash && !trash.dataset.userMoved) {
       trash.style.left = (sidebarLeftCanvas + folderWidth + 20) + 'px';
       trash.style.top = belowSidebarY + 'px';
+    }
+    const vcru = document.getElementById('folder-vcru');
+    if (vcru && !vcru.dataset.userMoved) {
+      vcru.style.left = (sidebarLeftCanvas + (folderWidth + 20) * 2) + 'px';
+      vcru.style.top = belowSidebarY + 'px';
     }
 
     const card = document.getElementById('card-chart-reviewer');
@@ -702,10 +708,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.info-panel__tab[data-tab]').forEach(tab => {
     tab.addEventListener('click', () => {
       const targetPane = tab.dataset.tab;
+      const aboutPage = document.getElementById('about-page');
+      if (targetPane === 'about' && aboutPage) {
+        const isOpen = aboutPage.classList.contains('is-open');
+        document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
+        document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+        aboutPage.classList.toggle('is-open', !isOpen);
+        if (!isOpen) tab.classList.add('is-active');
+        return;
+      }
       const pane = document.querySelector(`.info-panel__pane[data-pane="${targetPane}"]`);
+      if (!pane) return;
       const isOpen = pane.classList.contains('is-active');
       document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
       document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+      if (aboutPage) aboutPage.classList.remove('is-open');
       if (!isOpen) {
         tab.classList.add('is-active');
         pane.classList.add('is-active');

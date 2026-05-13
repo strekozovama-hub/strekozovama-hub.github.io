@@ -6,7 +6,7 @@
   <title>Marina Strekozova — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -42,80 +42,137 @@
         </div>
         <!-- About Card Dropdown -->
         <div class="about-card" id="about-card">
-          <section class="about-card__panel about-card__panel--intro" aria-label="About Marina">
-            <div class="about-card__intro">
+          <section class="about-card__panel about-card__panel--main" aria-label="About Marina">
+            <div class="about-card__top">
               <div class="about-card__avatar">
                 <img src="Images/marina-photo.png" alt="Marina Strekozova">
               </div>
-              <div class="about-card__intro-copy">
-                <h1 class="about-card__title">Hi! My name is Marina <span class="about-card__emoji-fix" aria-hidden="true">👋</span></h1>
-                <p class="about-card__subtitle">Product Designer with a&nbsp;background in&nbsp;graphic arts</p>
+              <div class="about-card__identity">
+                <div class="about-card__name-row">
+                  <h1 class="about-card__name">Marina Strekozova</h1>
+                </div>
+                <div class="about-card__location-row">
+                  <span class="about-card__location">Porto,</span>
+                  <div class="about-card__remote">
+                    <span class="about-card__location">Remote&#8209;friendly</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <circle cx="8" cy="8" r="6" stroke="#5a5a5a" stroke-width="1"/>
+                      <circle cx="6" cy="6.5" r="0.8" fill="#5a5a5a"/>
+                      <circle cx="10" cy="6.5" r="0.8" fill="#5a5a5a"/>
+                      <path d="M5.5 9.5C6.2 10.8 9.8 10.8 10.5 9.5" stroke="#5a5a5a" stroke-linecap="round" stroke-width="1"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="about-card__body-wrap">
+              <div class="about-card__body">
+                <p class="about-card__heading">Hi! I'm a product designer with 6+ years of&nbsp;turning complex product flows into clear, measurable experiences.</p>
+                <div class="about-card__cta-row">
+                  <a href="Images/Side bar info/Marina Strekozova CV.pdf" target="_blank" class="about-card__cta-cv">
+                    CV
+                    <img src="Images/Download.svg" width="16" height="16" alt="" aria-hidden="true">
+                  </a>
+                  <a href="mailto:strekozova.ma@gmail.com" class="about-card__cta" aria-label="Hire me">
+                    <span>Hire me</span>
+                    <img src="Images/Mouse pointer.png" alt="" aria-hidden="true" style="width:16px;height:16px;display:block;flex-shrink:0;">
+                  </a>
+                </div>
+              </div>
+              <div class="about-card__tags" aria-label="Experience areas">
+                <span class="about-card__tag">6+ years</span>
+                <span class="about-card__tag">FinTech</span>
+                <span class="about-card__tag">HealthTech</span>
+                <span class="about-card__tag">SAAS</span>
+                <span class="about-card__tag">Mobile</span>
+                <span class="about-card__tag">Web</span>
+                <span class="about-card__tag">AI</span>
+                <span class="about-card__tag">AI experience</span>
+                <span class="about-card__tag">Experience</span>
+                <span class="about-card__tag">User Research</span>
+                <span class="about-card__tag">End-to-end</span>
               </div>
             </div>
           </section>
-          <section class="about-card__panel about-card__panel--details" aria-label="Experience summary">
-            <div class="about-card__tags" aria-label="Experience areas">
-              <span class="about-card__tag about-card__tag--years">6+ years</span>
-              <span class="about-card__tag about-card__tag--fintech">FinTech</span>
-              <span class="about-card__tag about-card__tag--healthtech">HealthTech</span>
-              <span class="about-card__tag about-card__tag--saas">SAAS</span>
-              <span class="about-card__tag about-card__tag--mobile">Mobile</span>
-              <span class="about-card__tag about-card__tag--web">Web</span>
-            </div>
-            <div class="about-card__body">
-              <h2 class="about-card__heading">Designing interfaces that move metrics</h2>
-              <p class="about-card__text">From driving core customer experience for high-scale products, including fintech with <strong>45M+ users</strong> to building AI-driven automation, that cutting document review time <strong>by 80% (5&nbsp;min → 41 sec)</strong> and accelerating workflows <strong>by 10x</strong> for a platform with <strong>120K+</strong> annual visits.</p>
-            </div>
-            <a href="mailto:strekozova.ma@gmail.com" class="about-card__cta" aria-label="Hire me">
-              <span>Hire me</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M4.10667 11.9289L3.33334 11.1556L10.0445 4.44446H3.92889V3.33334H11.9289V11.3333H10.8178V5.21779L4.10667 11.9289Z" fill="currentColor"/>
-              </svg>
-            </a>
-          </section>
-          <!-- Info Panel: CV / Contact / Tools -->
-          <div class="info-panel" id="info-panel">
-            <div class="info-panel__tabs">
-              <a href="Images/Side bar info/Marina Strekozova CV.pdf" target="_blank" class="info-panel__tab info-panel__tab--link">
-                CV
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M8 2v8M5.5 7.5L8 10l2.5-2.5"/>
-                  <path d="M2.5 11.5v1.75c0 .414.336.75.75.75h9.5a.75.75 0 0 0 .75-.75V11.5"/>
+          <!-- Details nav card -->
+          <div class="about-card__panel about-card__details">
+            <div class="about-card__detail-item">
+              <button class="about-card__detail-row info-panel__tab" data-tab="about">
+                <span class="about-card__detail-label">About</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M3.5 10H16.5M16.5 10L11.5 5M16.5 10L11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </a>
-              <button class="info-panel__tab" data-tab="contact">Contact</button>
-              <button class="info-panel__tab" data-tab="tools">Tools</button>
+              </button>
+              <div class="info-panel__pane info-panel__pane--about" data-pane="about">
+                <div class="about-card__body">
+                  <h2 class="about-card__heading">Designing interfaces that move metrics</h2>
+                  <p class="about-card__text">From driving core customer experience for high-scale products, including fintech with <strong>45M+ users</strong> to building AI-driven automation, cutting document review time <strong>by 80% (5&nbsp;min → 41 sec)</strong> and accelerating workflows <strong>by 10x</strong> for a platform with <strong>120K+</strong> annual visits.</p>
+                  <p class="about-card__text">Background in graphic arts — brought to every product through thoughtful visual craft and attention to detail.</p>
+                </div>
+              </div>
             </div>
-            <div class="info-panel__pane" data-pane="contact">
-              <a href="mailto:strekozova.ma@gmail.com" class="dock__item" data-tooltip="Mail">
-                <img class="dock__icon-img" src="Images/mail.png" alt="Mail">
-              </a>
-              <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" class="dock__item" data-tooltip="LinkedIn">
-                <img class="dock__icon-img" src="Images/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://t.me/malibelula" target="_blank" class="dock__item" data-tooltip="Telegram">
-                <img class="dock__icon-img" src="Images/telegram.png" alt="Telegram">
-              </a>
+            <div class="about-card__detail-item">
+              <button class="about-card__detail-row">
+                <span class="about-card__detail-label">Projects</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M3.5 10H16.5M16.5 10L11.5 5M16.5 10L11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
             </div>
-            <div class="info-panel__pane" data-pane="tools">
-              <a href="https://figma.com" target="_blank" class="dock__item" data-tooltip="Figma">
-                <img class="dock__icon-img" src="Images/figma.png" alt="Figma">
-              </a>
-              <a href="https://miro.com" target="_blank" class="dock__item" data-tooltip="Miro">
-                <img class="dock__icon-img" src="Images/miro.png" alt="Miro">
-              </a>
-              <a href="https://notion.so" target="_blank" class="dock__item" data-tooltip="Notion">
-                <img class="dock__icon-img" src="Images/notion.png" alt="Notion">
-              </a>
-              <a href="https://claude.ai" target="_blank" class="dock__item" data-tooltip="Claude">
-                <img class="dock__icon-img" src="Images/claude.png" alt="Claude">
-              </a>
-              <a href="https://chatgpt.com" target="_blank" class="dock__item" data-tooltip="ChatGPT">
-                <img class="dock__icon-img" src="Images/chatgpt.png" alt="ChatGPT">
-              </a>
-              <a href="https://chatgpt.com/codex" target="_blank" class="dock__item" data-tooltip="Codex">
-                <img class="dock__icon-img" src="Images/codex-color 2.png" alt="Codex">
-              </a>
+            <div class="about-card__detail-item">
+              <div class="about-card__detail-row about-card__detail-row--contacts">
+                <span class="about-card__detail-label">Contacts</span>
+                <div class="about-card__contact-links" aria-label="Contact links">
+                  <a href="mailto:strekozova.ma@gmail.com" class="about-card__contact-link" aria-label="Mail">
+                    <img src="Images/mail.png" alt="">
+                  </a>
+                  <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="LinkedIn">
+                    <img src="Images/linkedin.png" alt="">
+                  </a>
+                  <a href="https://t.me/malibelula" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Telegram">
+                    <img src="Images/telegram.png" alt="">
+                  </a>
+                </div>
+              </div>
+              <div class="info-panel__pane" data-pane="contact" aria-hidden="true">
+                <a href="mailto:strekozova.ma@gmail.com" class="dock__item" data-tooltip="Mail" tabindex="-1">
+                  <img class="dock__icon-img" src="Images/mail.png" alt="">
+                </a>
+                <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" class="dock__item" data-tooltip="LinkedIn" tabindex="-1">
+                  <img class="dock__icon-img" src="Images/linkedin.png" alt="">
+                </a>
+                <a href="https://t.me/malibelula" target="_blank" class="dock__item" data-tooltip="Telegram" tabindex="-1">
+                  <img class="dock__icon-img" src="Images/telegram.png" alt="">
+                </a>
+              </div>
+            </div>
+            <div class="about-card__detail-item">
+              <button class="about-card__detail-row info-panel__tab" data-tab="tools">
+                <span class="about-card__detail-label">Tools</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M3.5 10H16.5M16.5 10L11.5 5M16.5 10L11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="info-panel__pane" data-pane="tools">
+                <a href="https://figma.com" target="_blank" class="dock__item" data-tooltip="Figma">
+                  <img class="dock__icon-img" src="Images/figma.png" alt="Figma">
+                </a>
+                <a href="https://miro.com" target="_blank" class="dock__item" data-tooltip="Miro">
+                  <img class="dock__icon-img" src="Images/miro.png" alt="Miro">
+                </a>
+                <a href="https://notion.so" target="_blank" class="dock__item" data-tooltip="Notion">
+                  <img class="dock__icon-img" src="Images/notion.png" alt="Notion">
+                </a>
+                <a href="https://claude.ai" target="_blank" class="dock__item" data-tooltip="Claude">
+                  <img class="dock__icon-img" src="Images/claude.png" alt="Claude">
+                </a>
+                <a href="https://chatgpt.com" target="_blank" class="dock__item" data-tooltip="ChatGPT">
+                  <img class="dock__icon-img" src="Images/chatgpt.png" alt="ChatGPT">
+                </a>
+                <a href="https://chatgpt.com/codex" target="_blank" class="dock__item" data-tooltip="Codex">
+                  <img class="dock__icon-img" src="Images/codex-color 2.png" alt="Codex">
+                </a>
+              </div>
             </div>
           </div>
           <!--
@@ -137,9 +194,10 @@
       <div class="menubar__right">
         <!-- Spotify trigger -->
         <div class="spotify-trigger" id="spotify-trigger" aria-label="Now playing">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <circle cx="9" cy="9" r="9" fill="#E040FB"/>
-            <polygon points="7,5.5 7,12.5 13,9" fill="#1a1a1a"/>
+          <svg width="24" height="24" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="9" fill="#1E1E1E"/>
+            <circle cx="9" cy="9" r="5.7" fill="#00C83B"/>
+            <path d="M7.35 5.8V12.2L12.35 9L7.35 5.8Z" fill="#F5F5F5"/>
           </svg>
           <!-- Spotify dropdown -->
           <div class="spotify-dropdown" id="spotify-dropdown">
@@ -155,9 +213,51 @@
             ></iframe>
           </div>
         </div>
-        <span class="menubar__item" id="menubar-time"></span>
+        <span class="menubar__time">
+          <svg class="menubar__time-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M8 4.6V8L10.3 9.35" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="menubar__item" id="menubar-time"></span>
+        </span>
       </div>
     </div>
+
+    <section class="sidebar-page" id="about-page" aria-label="About Marina details">
+      <div class="sidebar-page__content">
+        <p class="sidebar-page__eyebrow">About</p>
+        <div class="sidebar-page__sections">
+          <section class="sidebar-page__section">
+            <h2 class="sidebar-page__title">I design interfaces that move metrics</h2>
+            <div class="sidebar-page__text">
+              <p>My work spans high-scale FintTech products with <strong>45M+</strong> users and AI-driven automation for platforms with <strong>120K+</strong> annual visits. I focus on turning complex workflows into clearer, faster experiences — from reducing document review time <strong>by 80%</strong> to accelerating operational flows <strong>by 10x.</strong></p>
+            </div>
+          </section>
+
+          <section class="sidebar-page__section">
+            <h2 class="sidebar-page__title">Behind pixels</h2>
+            <div class="sidebar-page__text">
+              <p>My background in <strong>art and illustration</strong> shaped my sensitivity to structure, hierarchy, and visual clarity. In product design, I use that lens to organize complexity, guide attention, and make experiences easier to understand and act on.</p>
+            </div>
+            <a class="sidebar-page__link" href="https://www.behance.net/Strekozova_Mari" target="_blank" rel="noopener">
+              <span>View my Behance</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M5.25 10.75L10.75 5.25M6.25 5.25H10.75V9.75" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </section>
+
+          <section class="sidebar-page__section">
+            <h2 class="sidebar-page__title">Beyond work</h2>
+            <div class="sidebar-page__text">
+              <p>In the past 4 years, I’ve lived in 5 countries — an experience that shaped the way I observe people, cultures, and everyday systems.</p>
+              <p>I travel with my husband and our dog, whom we rescued from the streets of Armenia.</p>
+              <p>Outside of design, I find joy in drawing and illustration, ceramics, time in nature, and conversations with people who are curious about the world.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
 
     <!-- Desktop wallpaper area — pannable canvas -->
     <div class="desktop__area" id="desktop-area">
@@ -198,6 +298,10 @@
         <div class="desktop-folder desktop-folder--trash" id="dock-trash" data-col="1" data-row="3">
           <img class="desktop-folder__icon" src="Images/trash.png" alt="Trash">
           <span class="desktop-folder__name">Other</span>
+        </div>
+        <div class="desktop-folder" id="folder-vcru" data-href="https://vc.ru/services/967519-keis-v-tinkoff-nashli-populyarnuyu-prichinu-obrashenii-v-podderzhku-vot-kak-oni-iskali-problemu-vo-flou-s-pomoshyu-pathway" data-target="_blank">
+          <img class="desktop-folder__icon" src="Images/vc.ru.png" alt="vc.ru" style="width: 80px;">
+          <span class="desktop-folder__name">vc.ru</span>
         </div>
         <!-- Project Card: AI Chart Reviewer -->
         <div class="project-card" id="card-chart-reviewer" data-href="Cases/medvidi.html" data-target="_self">
