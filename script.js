@@ -705,15 +705,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const spotifyWidget = document.getElementById('spotify-widget');
   // -- Info Panel tab switching --
+  const desktop = document.getElementById('desktop');
+  const aboutPage = document.getElementById('about-page');
+  const setAboutPageOpen = (isOpen) => {
+    aboutPage?.classList.toggle('is-open', isOpen);
+    desktop?.classList.toggle('desktop--sidebar-page-open', isOpen);
+    document.body.classList.toggle('is-sidebar-page-open', isOpen);
+  };
+
+  const projectsNav = document.getElementById('projects-nav');
+  if (projectsNav) {
+    projectsNav.addEventListener('click', () => {
+      document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
+      document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+      setAboutPageOpen(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   document.querySelectorAll('.info-panel__tab[data-tab]').forEach(tab => {
     tab.addEventListener('click', () => {
       const targetPane = tab.dataset.tab;
-      const aboutPage = document.getElementById('about-page');
       if (targetPane === 'about' && aboutPage) {
         const isOpen = aboutPage.classList.contains('is-open');
         document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
         document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
-        aboutPage.classList.toggle('is-open', !isOpen);
+        setAboutPageOpen(!isOpen);
         if (!isOpen) tab.classList.add('is-active');
         return;
       }
@@ -722,12 +739,50 @@ document.addEventListener('DOMContentLoaded', () => {
       const isOpen = pane.classList.contains('is-active');
       document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
       document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
-      if (aboutPage) aboutPage.classList.remove('is-open');
+      setAboutPageOpen(false);
       if (!isOpen) {
         tab.classList.add('is-active');
         pane.classList.add('is-active');
       }
     });
+  });
+
+  document.querySelectorAll('.photo-folder__piece').forEach(piece => {
+    let startX = 0;
+    let startY = 0;
+    let originX = 0;
+    let originY = 0;
+
+    piece.addEventListener('pointerdown', (event) => {
+      startX = event.clientX;
+      startY = event.clientY;
+      originX = Number(piece.dataset.dragX || 0);
+      originY = Number(piece.dataset.dragY || 0);
+      piece.classList.add('is-dragging');
+      piece.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    });
+
+    piece.addEventListener('pointermove', (event) => {
+      if (!piece.classList.contains('is-dragging')) return;
+      const nextX = originX + event.clientX - startX;
+      const nextY = originY + event.clientY - startY;
+      piece.dataset.dragX = String(nextX);
+      piece.dataset.dragY = String(nextY);
+      piece.style.setProperty('--drag-x', `${nextX}px`);
+      piece.style.setProperty('--drag-y', `${nextY}px`);
+    });
+
+    const stopDrag = (event) => {
+      if (!piece.classList.contains('is-dragging')) return;
+      piece.classList.remove('is-dragging');
+      if (piece.hasPointerCapture(event.pointerId)) {
+        piece.releasePointerCapture(event.pointerId);
+      }
+    };
+
+    piece.addEventListener('pointerup', stopDrag);
+    piece.addEventListener('pointercancel', stopDrag);
   });
 
   if (spotifyWidget) {
