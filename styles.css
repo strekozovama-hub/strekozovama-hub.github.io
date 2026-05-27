@@ -384,6 +384,10 @@ body.is-sidebar-page-open {
   flex-direction: column;
 }
 
+.about-card__detail-item--switcher {
+  gap: 18px;
+}
+
 .about-card__detail-row {
   align-items: center;
   background: none;
@@ -417,29 +421,85 @@ body.is-sidebar-page-open {
 }
 
 .about-card__detail-label {
+  align-items: center;
   color: #1e1e1e;
+  display: inline-flex;
   font-family: 'Sora', sans-serif;
   font-size: 16px;
   font-weight: 600;
+  gap: 6px;
   letter-spacing: -0.32px;
   line-height: 1.4;
 }
 
-.about-card__contact-links {
+.about-card__detail-row.is-active .about-card__detail-label::before {
+  content: '👀';
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.about-card__segmented {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: 12px;
+}
+
+.about-card__segment {
+  align-items: center;
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  color: #5a5a5a;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  justify-content: center;
+  letter-spacing: -0.14px;
+  line-height: 1;
+  min-width: 90px;
+  padding: 6px 12px;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.about-card__segment.is-active {
+  background: #e2e2e2;
+  border-color: #e2e2e2;
+  color: #303030;
+}
+
+.about-card__segment:hover {
+  border-color: #c9c9c9;
+  color: #303030;
+}
+
+.about-card__segment.is-active:hover {
+  border-color: #e2e2e2;
+}
+
+.about-card__icon-panel {
+  align-items: flex-end;
+  display: none;
+  gap: 12px;
+  min-height: 32px;
+}
+
+.about-card__icon-panel.is-active {
+  display: flex;
 }
 
 .about-card__contact-link {
-  border-radius: 100px;
+  border-radius: 7px;
   display: block;
   flex-shrink: 0;
-  height: 28px;
+  height: 32px;
   overflow: hidden;
   position: relative;
   text-decoration: none;
-  width: 28px;
+  width: 32px;
 }
 
 .about-card__contact-link img {
@@ -450,6 +510,28 @@ body.is-sidebar-page-open {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.about-card__icon-panel[data-switch-pane="tools"] .about-card__contact-link {
+  background: transparent;
+  border: none;
+  display: block;
+}
+
+.about-card__icon-panel[data-switch-pane="tools"] .about-card__contact-link img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.about-card__contact-link--codex {
+  height: 36px;
+  margin-bottom: -3px;
+  margin-top: -1px;
+  width: 36px;
 }
 
 .about-card__body-wrap {

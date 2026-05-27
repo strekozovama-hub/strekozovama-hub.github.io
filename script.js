@@ -714,10 +714,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const projectsNav = document.getElementById('projects-nav');
+  const clearInfoPanelSelection = () => {
+    document.querySelectorAll('.info-panel__tab, #projects-nav').forEach(t => t.classList.remove('is-active'));
+    document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+  };
+  const selectProjectsNav = () => {
+    clearInfoPanelSelection();
+    projectsNav?.classList.add('is-active');
+  };
+
   if (projectsNav) {
     projectsNav.addEventListener('click', () => {
-      document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
-      document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+      selectProjectsNav();
       setAboutPageOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -728,22 +736,40 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetPane = tab.dataset.tab;
       if (targetPane === 'about' && aboutPage) {
         const isOpen = aboutPage.classList.contains('is-open');
-        document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
-        document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+        clearInfoPanelSelection();
         setAboutPageOpen(!isOpen);
-        if (!isOpen) tab.classList.add('is-active');
+        if (!isOpen) {
+          tab.classList.add('is-active');
+        } else {
+          projectsNav?.classList.add('is-active');
+        }
         return;
       }
       const pane = document.querySelector(`.info-panel__pane[data-pane="${targetPane}"]`);
       if (!pane) return;
       const isOpen = pane.classList.contains('is-active');
-      document.querySelectorAll('.info-panel__tab').forEach(t => t.classList.remove('is-active'));
-      document.querySelectorAll('.info-panel__pane').forEach(p => p.classList.remove('is-active'));
+      clearInfoPanelSelection();
       setAboutPageOpen(false);
       if (!isOpen) {
         tab.classList.add('is-active');
         pane.classList.add('is-active');
+      } else {
+        projectsNav?.classList.add('is-active');
       }
+    });
+  });
+
+  document.querySelectorAll('[data-switch-target]').forEach(segment => {
+    segment.addEventListener('click', () => {
+      const target = segment.dataset.switchTarget;
+      document.querySelectorAll('[data-switch-target]').forEach(item => {
+        const isActive = item === segment;
+        item.classList.toggle('is-active', isActive);
+        item.setAttribute('aria-selected', String(isActive));
+      });
+      document.querySelectorAll('[data-switch-pane]').forEach(pane => {
+        pane.classList.toggle('is-active', pane.dataset.switchPane === target);
+      });
     });
   });
 

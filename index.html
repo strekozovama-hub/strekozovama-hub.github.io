@@ -104,65 +104,47 @@
               </div>
             </div>
             <div class="about-card__detail-item">
-              <button class="about-card__detail-row" id="projects-nav">
+              <button class="about-card__detail-row is-active" id="projects-nav">
                 <span class="about-card__detail-label">Projects</span>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <path d="M3.5 10H16.5M16.5 10L11.5 5M16.5 10L11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </button>
             </div>
-            <div class="about-card__detail-item">
-              <div class="about-card__detail-row about-card__detail-row--contacts">
-                <span class="about-card__detail-label">Contacts</span>
-                <div class="about-card__contact-links" aria-label="Contact links">
-                  <a href="mailto:strekozova.ma@gmail.com" class="about-card__contact-link" aria-label="Mail">
-                    <img src="Images/mail.png" alt="">
-                  </a>
-                  <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="LinkedIn">
-                    <img src="Images/linkedin.png" alt="">
-                  </a>
-                  <a href="https://t.me/malibelula" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Telegram">
-                    <img src="Images/telegram.png" alt="">
-                  </a>
-                </div>
+            <div class="about-card__detail-item about-card__detail-item--switcher">
+              <div class="about-card__segmented" role="tablist" aria-label="Contacts and tools">
+                <button class="about-card__segment is-active" type="button" role="tab" aria-selected="true" data-switch-target="contacts">Contacts</button>
+                <button class="about-card__segment" type="button" role="tab" aria-selected="false" data-switch-target="tools">Tools</button>
               </div>
-              <div class="info-panel__pane" data-pane="contact" aria-hidden="true">
-                <a href="mailto:strekozova.ma@gmail.com" class="dock__item" data-tooltip="Mail" tabindex="-1">
-                  <img class="dock__icon-img" src="Images/mail.png" alt="">
+              <div class="about-card__icon-panel is-active" data-switch-pane="contacts" aria-label="Contact links">
+                <a href="mailto:strekozova.ma@gmail.com" class="about-card__contact-link" aria-label="Mail">
+                  <img src="Images/mail.png" alt="">
                 </a>
-                <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" class="dock__item" data-tooltip="LinkedIn" tabindex="-1">
-                  <img class="dock__icon-img" src="Images/linkedin.png" alt="">
+                <a href="https://www.linkedin.com/in/marina-strekozova/" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="LinkedIn">
+                  <img src="Images/linkedin.png" alt="">
                 </a>
-                <a href="https://t.me/malibelula" target="_blank" class="dock__item" data-tooltip="Telegram" tabindex="-1">
-                  <img class="dock__icon-img" src="Images/telegram.png" alt="">
+                <a href="https://t.me/malibelula" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Telegram">
+                  <img src="Images/telegram.png" alt="">
                 </a>
               </div>
-            </div>
-            <div class="about-card__detail-item">
-              <button class="about-card__detail-row info-panel__tab" data-tab="tools">
-                <span class="about-card__detail-label">Tools</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M3.5 10H16.5M16.5 10L11.5 5M16.5 10L11.5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <div class="info-panel__pane" data-pane="tools">
-                <a href="https://figma.com" target="_blank" class="dock__item" data-tooltip="Figma">
-                  <img class="dock__icon-img" src="Images/figma.png" alt="Figma">
+              <div class="about-card__icon-panel" data-switch-pane="tools" aria-label="Tools">
+                <a href="https://figma.com" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Figma">
+                  <img src="Images/figma.png" alt="">
                 </a>
-                <a href="https://miro.com" target="_blank" class="dock__item" data-tooltip="Miro">
-                  <img class="dock__icon-img" src="Images/miro.png" alt="Miro">
+                <a href="https://notion.so" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Notion">
+                  <img src="Images/notion.png" alt="">
                 </a>
-                <a href="https://notion.so" target="_blank" class="dock__item" data-tooltip="Notion">
-                  <img class="dock__icon-img" src="Images/notion.png" alt="Notion">
+                <a href="https://miro.com" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Miro">
+                  <img src="Images/miro.png" alt="">
                 </a>
-                <a href="https://claude.ai" target="_blank" class="dock__item" data-tooltip="Claude">
-                  <img class="dock__icon-img" src="Images/claude.png" alt="Claude">
+                <a href="https://claude.ai" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="Claude">
+                  <img src="Images/claude.png" alt="">
                 </a>
-                <a href="https://chatgpt.com" target="_blank" class="dock__item" data-tooltip="ChatGPT">
-                  <img class="dock__icon-img" src="Images/chatgpt.png" alt="ChatGPT">
+                <a href="https://chatgpt.com/codex" target="_blank" rel="noopener" class="about-card__contact-link about-card__contact-link--codex" aria-label="Codex">
+                  <img src="Images/codex-color 2.png" alt="">
                 </a>
-                <a href="https://chatgpt.com/codex" target="_blank" class="dock__item" data-tooltip="Codex">
-                  <img class="dock__icon-img" src="Images/codex-color 2.png" alt="Codex">
+                <a href="https://chatgpt.com" target="_blank" rel="noopener" class="about-card__contact-link" aria-label="ChatGPT">
+                  <img src="Images/chatgpt.png" alt="">
                 </a>
               </div>
             </div>
